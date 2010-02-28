@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  position: 1
+  key: MyString
+  title_cn: MyString
+  title_jp: MyString
+  kind: MyString
+  description: MyText
+  params: MyText
+  enabled: false
+  validation_script: MyText
+
+two:
+  position: 1
+  key: MyString
+  title_cn: MyString
+  title_jp: MyString
+  kind: MyString
+  description: MyText
+  params: MyText
+  enabled: false
+  validation_script: MyText

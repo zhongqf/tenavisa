@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  student_id: 1
+  element_id: 1
+  element_key: MyString
+  value: MyText
+
+two:
+  student_id: 1
+  element_id: 1
+  element_key: MyString
+  value: MyText

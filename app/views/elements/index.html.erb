@@ -1,0 +1,36 @@
+<h1>Listing elements</h1>
+
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Key</th>
+    <th>Title cn</th>
+    <th>Title jp</th>
+    <th>Kind</th>
+    <th>Description</th>
+    <th>Params</th>
+    <th>Enabled</th>
+    <th>Validation script</th>
+  </tr>
+
+<% @elements.each do |element| %>
+  <tr>
+    <td><%=h element.position %></td>
+    <td><%=h element.key %></td>
+    <td><%=h element.title_cn %></td>
+    <td><%=h element.title_jp %></td>
+    <td><%=h element.kind %></td>
+    <td><%=h element.description %></td>
+    <td><%=h element.params %></td>
+    <td><%=h element.enabled %></td>
+    <td><%=h element.validation_script %></td>
+    <td><%= link_to 'Show', element %></td>
+    <td><%= link_to 'Edit', edit_element_path(element) %></td>
+    <td><%= link_to 'Destroy', element, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New element', new_element_path %>
