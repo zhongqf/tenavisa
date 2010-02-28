@@ -1,0 +1,11 @@
+.project
+.loadpath
+coverage
+Capfile
+log
+db
+.tmp*
+*.*~
+vendor/gems
+vendor/rails
+
