@@ -1,12 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :profiles
-
-  map.resources :students
-
-  map.resources :values
-
-  map.resources :elements
-
+  
+  map.namespace :educatee do |educatee|
+    educatee.resource :dashboard
+  end
+  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'accounts', :action => 'create'
