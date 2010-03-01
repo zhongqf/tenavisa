@@ -1,0 +1,10 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  Account: create, read, update, delete
+  Educatee: create, read, update, delete
+  Element: create, read, update, delete
+  Profile: create, read, update, delete
+  Value: create, read, update, delete

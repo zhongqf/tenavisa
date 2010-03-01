@@ -1,0 +1,54 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Account:
+  fields:
+    list: login, name, email
+    form: login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, activation_code, activated_at
+  order_by: 
+  relationships: 
+  filters: 
+  search: name
+  application: tenavisa
+
+Educatee:
+  fields:
+    list: 
+    form: 
+  order_by: 
+  relationships: account, profile
+  filters: 
+  search: 
+  application: tenavisa
+
+Element:
+  fields:
+    list: position, key, title_cn, title_jp, kind, enabled
+    form: key, title_cn, title_jp, kind, description, params, enabled, validation_script
+  order_by: position
+  relationships: 
+  filters: 
+  search: 
+  application: tenavisa
+
+Profile:
+  fields:
+    list: student_id
+    form: student_id, status
+  order_by: 
+  relationships: values
+  filters: 
+  search: 
+  application: tenavisa
+
+Value:
+  fields:
+    list: element_key, profile, element
+    form: element_key, value, profile, element
+  order_by: 
+  relationships: element, profile
+  filters: 
+  search: 
+  application: tenavisa
+
