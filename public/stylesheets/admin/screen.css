@@ -186,7 +186,8 @@ fieldset.buttons { }
 /* @group Content Tables */
 
 #content table.typus { width: 100%; }
-#content table.typus small { font-size: 0.8em; }
+#content table.typus small { font-size: 0.6em; color: #888;}
+#content table.typus tr:hover small{color: #fff;}
 #content table.typus th { color: #FFF; font-weight: normal; padding: 4px; }
 #content table.typus th a { color: #FFF!important; }
 #content table.typus td.right { text-align: right; }
