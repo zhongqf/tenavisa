@@ -6,6 +6,7 @@ Account:
   fields:
     list: login, name, email
     form: login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, activation_code, activated_at
+    show: login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, activation_code, activated_at
   order_by: 
   relationships: 
   filters: 
@@ -26,6 +27,7 @@ Element:
   fields:
     list: position, key, title_cn, title_jp, kind, enabled
     form: key, title_cn, title_jp, kind, description, params, enabled, validation_script
+    show: key, title_cn, title_jp, kind, description, params, enabled, validation_script
   order_by: position
   relationships: 
   filters: 
@@ -34,8 +36,8 @@ Element:
 
 Profile:
   fields:
-    list: student_id
-    form: student_id, status
+    list: educatee_id
+    form: educatee_id, status
   order_by: 
   relationships: values
   filters: 
