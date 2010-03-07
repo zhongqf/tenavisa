@@ -13,7 +13,13 @@
 </head>
 <body class="bp three-col">
   <div id="container">
-    <div id="header">Header -------------------------</div>
+    <div id="header">
+      <% if logged_in? -%>
+        Logged as <%= current_account.email %> (<%= current_account.loginable.class %>)
+      <% else -%>
+        <%= link_to 'Login', login_path %>
+      <% end -%>
+    </div>
     <div id="sidebar">Sidebar
     	<ul><li>one</li><li>two</li></ul>
     </div>
