@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace :educatee do |educatee|
     educatee.resource :dashboard
+    educatee.resource :profile
   end
   
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

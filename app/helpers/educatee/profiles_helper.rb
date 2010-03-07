@@ -1,0 +1,2 @@
+module Educatee::ProfilesHelper
+end
