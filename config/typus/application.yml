@@ -51,10 +51,21 @@ Element:
     form: key, title_cn, title_jp, kind, description, params, enabled, validation_script
     show: key, title_cn, title_jp, kind, description, params, enabled, validation_script
   order_by: position
-  relationships: 
+  relationships: page
   filters: 
   search: 
   application: tenavisa
+
+Page:
+  fields:
+    list: title
+    form: title
+    show: title
+  order_by: elements
+  relationships: 
+  filters: 
+  search: 
+  application: tenavisa    
 
 Profile:
   fields:

@@ -10,3 +10,4 @@ admin:
   Element: create, read, update, delete
   Profile: create, read, update, delete
   Value: create, read, update, delete
+  Page: create, read, update, delete
