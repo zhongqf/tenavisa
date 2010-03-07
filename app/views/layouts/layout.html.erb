@@ -16,6 +16,7 @@
     <div id="header">
       <% if logged_in? -%>
         Logged as <%= current_account.email %> (<%= current_account.loginable.class %>)
+        <%= link_to 'Logout', logout_path %>
       <% else -%>
         <%= link_to 'Login', login_path %>
       <% end -%>

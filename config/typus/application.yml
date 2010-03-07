@@ -23,6 +23,28 @@ Educatee:
   search: 
   application: tenavisa
 
+Educator:
+  fields:
+    list: 
+    form: 
+  order_by: 
+  relationships: account, profile
+  filters: 
+  search: 
+  application: tenavisa
+
+Operator:
+  fields:
+    list: 
+    form: 
+  order_by: 
+  relationships: account, profile
+  filters: 
+  search: 
+  application: tenavisa
+
+
+
 Element:
   fields:
     list: position, key, title_cn, title_jp, kind, enabled
