@@ -1,0 +1,7 @@
+- form_for @profile, :url => educatee_profile_path(@profile), :html => { :multipart => true} do |form|
+  %fieldset.inputs
+    %ol
+      = make_form_for(@elements, form)
+  %fieldset.buttons
+    %ol
+      %li= submit_tag "Save", :class => "commit"

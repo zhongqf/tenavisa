@@ -1,0 +1,6 @@
+%h1 Dashboard
+.box
+  %ul
+    - Page.all.each do |page|
+      %li
+        = "Edit your #{link_to page.title, edit_educatee_profile_path(:page => page)}"

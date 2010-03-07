@@ -9,5 +9,5 @@ admin:
   Operator: create, read, update, delete
   Element: create, read, update, delete
   Profile: create, read, update, delete
-  Value: create, read, update, delete
+  Valeur: create, read, update, delete
   Page: create, read, update, delete

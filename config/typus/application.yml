@@ -72,15 +72,15 @@ Profile:
     list: educatee_id
     form: educatee_id, status
   order_by: 
-  relationships: values
+  relationships: valeurs
   filters: 
   search: 
   application: tenavisa
 
-Value:
+Valeur:
   fields:
     list: element_key, profile, element
-    form: element_key, value, profile, element
+    form: element_key, valeur, profile, element
   order_by: 
   relationships: element, profile
   filters: 

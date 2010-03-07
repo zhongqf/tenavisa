@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  has_many :values
+  has_many :valeurs
   
   include AASM
   
