@@ -11,7 +11,7 @@ module ApplicationHelper
   end
   
   def educator_required
-    ( !! current_educator ) || access_denied
+    ( !!current_educator ) || access_denied
   end
   
   def current_educator
@@ -20,7 +20,7 @@ module ApplicationHelper
   end
   
   def operator_required
-    ( || current_operator ) || access_denied
+    ( !!current_operator ) || access_denied
   end
   
   def current_operator
