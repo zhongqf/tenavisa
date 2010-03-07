@@ -5,6 +5,7 @@ class Profile < ActiveRecord::Base
   
   aasm_column :status
   aasm_initial_state :new
+  aasm_state :new
   aasm_state :editing
   aasm_state :registered
   aasm_state :accepted

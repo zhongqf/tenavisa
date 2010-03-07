@@ -11,7 +11,8 @@ class AccountsController < ApplicationController
   def create
     logout_keeping_session!
     @account = Account.new(params[:account])
-    success = @account && @account.save
+    @educatee = Educatee.new
+    success = @account && ( @account.loginable = @educatee ) && @account.save 
     if success && @account.errors.empty?
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
