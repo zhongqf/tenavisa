@@ -8,4 +8,4 @@ db
 *.*~
 vendor/gems
 vendor/rails
-
+.DS_Store
