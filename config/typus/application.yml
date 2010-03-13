@@ -47,9 +47,11 @@ Operator:
 
 Element:
   fields:
-    list: position, key, title_cn, title_jp, kind, enabled
-    form: key, title_cn, title_jp, kind, description, params, enabled, validation_script
-    show: key, title_cn, title_jp, kind, description, params, enabled, validation_script
+    list: position, page, key, title_cn, title_jp, kind, enabled
+    form: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script
+    show: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script
+    options:
+        selectors: kind
   order_by: position
   relationships: page
   filters: 

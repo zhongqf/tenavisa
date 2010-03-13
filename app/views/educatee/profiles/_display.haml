@@ -1,0 +1,9 @@
+- Page.all.each do |page|
+  %h2= page.title
+  
+  %ul
+  - page.elements.each do |element|
+    %li
+      %strong= element.title_cn
+      = ":"
+      = @profile.send(element.key)

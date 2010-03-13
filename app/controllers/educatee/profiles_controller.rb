@@ -2,6 +2,7 @@ class Educatee::ProfilesController < ApplicationController
   before_filter :educatee_required
 
   def show
+    @profile = current_educatee.profile
   end
 
   def edit
@@ -17,6 +18,13 @@ class Educatee::ProfilesController < ApplicationController
   end
 
   def update
+    @profile = current_educatee.profile
+    if @profile.update_attributes(params[:profile])
+      flash[:notice] = "Profile updated."
+      redirect_to educatee_dashboard_path
+    else
+      logger.debug @profile.errors.inspect
+    end
   end
 
   def print

@@ -5,6 +5,11 @@ ActionController::Routing::Routes.draw do |map|
     educatee.resource :profile
   end
   
+  map.namespace :educator do |educator|
+    educator.resource :dashboard
+    educator.resources :profiles
+  end
+  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'accounts', :action => 'create'

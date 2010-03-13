@@ -1,0 +1,6 @@
+%table
+  %tr
+    %th Name
+    %th Status
+  - profiles.each do |profile|
+    = render 'educator/profiles/record', :profile => profile
