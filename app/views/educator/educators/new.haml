@@ -1,0 +1,21 @@
+%h1 Create a educator
+
+= error_messages_for :account
+
+- form_for :account, :url => educator_educators_path do |f|
+  %p
+    = f.label 'login'
+    %br/
+    = f.text_field :login
+  
+  %p
+    = f.label 'email'
+    %br/
+    = f.text_field :email
+  
+  %p
+    = check_box_tag 'operator'
+    = label_tag 'operator'
+    
+  %p
+    = submit_tag 'Create'

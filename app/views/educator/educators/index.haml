@@ -1,0 +1,16 @@
+%h1 All Educators
+
+%table
+  %tr
+    %th Login
+    %th Name
+    %th Email
+    %th Operator
+  - @educators.each do |edu|
+    %tr
+      %td= edu.account.login
+      %td= edu.account.name
+      %td= edu.account.email
+      %td= edu.operator? ? "Yes" : "-"
+      
+= link_to "New Educator", new_educator_educator_path

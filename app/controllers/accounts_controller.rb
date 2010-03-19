@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   skip_before_filter :login_required
+  skip_before_filter :password_expired_check, :only => [:password_reset, :reset_password]
   
 
   # render new.rhtml
@@ -21,6 +22,24 @@ class AccountsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def password_reset
+    @account = current_account
+  end
+  
+  def reset_password
+    @account = current_account
+    @account.send(:attributes=, params[:account].merge(:password_expires_at => "9999/12/31 23:59:59"), false )
+    if @account.save
+      flash[:notice] = "Your password reseted. Relogin please."
+      logout_keeping_session!
+      redirect_back_or_default('/')
+    else
+      flash[:notice] = "Cannot reset your password. please try again."
+      redirect_to :back
+    end
+    
+  end
 
   def activate
     logout_keeping_session!
@@ -28,8 +47,9 @@ class AccountsController < ApplicationController
     case
     when (!params[:activation_code].blank?) && account && !account.active?
       account.activate!
+      self.current_account = account
       flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to '/login'
+      redirect_to '/'
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')

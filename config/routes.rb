@@ -2,12 +2,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace :educatee do |educatee|
     educatee.resource :dashboard
-    educatee.resource :profile
+    educatee.resource :profile, :member => { :submit => :post }
   end
   
   map.namespace :educator do |educator|
     educator.resource :dashboard
     educator.resources :profiles
+    educator.resources :educators
   end
   
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -15,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'accounts', :action => 'create'
   map.signup '/signup', :controller => 'accounts', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
+  map.password_reset '/password_reset', :controller => 'accounts', :action => 'password_reset'
+  map.reset_password '/reset_password', :controller => 'accounts', :action => 'reset_password'
   
   map.resources :accounts
 

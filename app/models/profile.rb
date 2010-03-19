@@ -10,10 +10,25 @@ class Profile < ActiveRecord::Base
   aasm_column :status
   aasm_initial_state :new
   aasm_state :new
-  aasm_state :editing
   aasm_state :submitted
   aasm_state :accepted
   aasm_state :denied
+  
+  aasm_event :submit do
+    transitions :to => :submitted, :from => [:new, :editing], :guard => :profile_check 
+  end
+  
+  aasm_event :accept do
+    transitions :to => :accepted, :from => [:submitted]
+  end
+  
+  aasm_event :deny do
+    transitions :to => :denied, :from => [:submitted]
+  end
+  
+  def profile_check
+    true
+  end
   
   Element.find(:all).each do |element|
     attr_writer element.key.intern

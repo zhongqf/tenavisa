@@ -1,6 +1,13 @@
 %h1 Dashboard
 .box
   %ul
-    - Page.all.each do |page|
-      %li
-        = "Edit your #{link_to page.title, edit_educatee_profile_path(:page => page)}"
+    - if [:new, :denied].include?(@profile.aasm_current_state)
+      - Page.all.each do |page|
+        %li
+          = "Edit your #{link_to page.title, edit_educatee_profile_path(:page => page)}"
+    - else
+      %li Your profile is in review. You can not edit your profile now.
+
+.msg
+  %strong= profile_message(@profile)
+    

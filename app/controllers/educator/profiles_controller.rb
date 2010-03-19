@@ -17,5 +17,5 @@ class Educator::ProfilesController < ApplicationController
 
   def update
   end
-
+  
 end

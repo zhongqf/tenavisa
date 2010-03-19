@@ -3,41 +3,32 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  include ApplicationHelper
 
-  helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  helper :all # include all helpers, all the time
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
   #before_filter :login_required
   
+  before_filter :password_expired_check
+  
   layout 'layout'
   
-  def educatee_required
-    ( !! current_educatee ) || access_denied
+  def password_expired_check
+    return unless logged_in?
+    
+    if (current_account.password_expires_at.nil? || current_account.password_expires_at <= Time.now)
+      store_location
+      redirect_to password_reset_path
+    end
   end
   
-  def current_educatee
-    return current_account.loginable if current_account && current_account.loginable.is_a?(Educatee)
-    nil
+  def random_password
+    "RANDOM_PASSWORD"
   end
   
-  def educator_required
-    ( !!current_educator ) || access_denied
-  end
-  
-  def current_educator
-    return current_account.loginable if current_account && current_account.loginable.is_a?(Educator)
-    nil
-  end
-  
-  def operator_required
-    ( !!current_operator ) || access_denied
-  end
-  
-  def current_operator
-    return current_account.loginable if current_account && current_account.loginable.is_a?(Operator)
-    nil
-  end
 end

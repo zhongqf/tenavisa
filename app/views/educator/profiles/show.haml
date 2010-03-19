@@ -1,3 +1,11 @@
 %h1= "#{@profile.name}'s Profile"
 
 = render 'educatee/profiles/display'
+
+
+= @profile.aasm_current_state.to_s
+
+- if current_educator
+  - if @profile.aasm_events_for_current_state.include?(:accept)
+    = link_to 'Accept', '', :class => "button"
+    

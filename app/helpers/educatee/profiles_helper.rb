@@ -18,4 +18,21 @@ module Educatee::ProfilesHelper
     end.html_safe!
 
   end
+  
+  def profile_message(profile)
+    case profile.aasm_current_state
+    when :new
+      "If you completed your profile, please " +
+      link_to('Submit', submit_educatee_profile_path, :method => :post) +
+      " it."
+    when :submitted
+      "We are confirming your profile. " +
+      "Please wait and check your profile status next time."
+    when :denied
+      "Your profile was denied. Please re-edit it."
+    when :accepted
+      "Your profile was accepted. We will contact you soon."
+    end
+    
+  end
 end
