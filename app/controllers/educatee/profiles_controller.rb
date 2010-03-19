@@ -8,7 +8,6 @@ class Educatee::ProfilesController < ApplicationController
   def edit
     begin
       @profile = current_educatee.profile
-      logger.debug current_educatee.inspect
       
       @page = Page.find(params[:page])
       @elements = @page.elements
@@ -24,7 +23,7 @@ class Educatee::ProfilesController < ApplicationController
     else
       flash[:error] = "Can not submit your profile."
     end
-      redirect_to :back
+    redirect_to :back
   end
       
 

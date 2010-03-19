@@ -26,6 +26,10 @@ class Profile < ActiveRecord::Base
     transitions :to => :denied, :from => [:submitted]
   end
   
+  def can_edit_by_educatee
+    [:new, :denied].include?(self.aasm_current_state)
+  end
+  
   def profile_check
     true
   end
@@ -40,7 +44,8 @@ class Profile < ActiveRecord::Base
         valeur = valeurs.find_or_create_by_element_id(element.id)
         valeur.element_key = element.key
         valeur.valeur = self.instance_variable_get("@#{element.key}")
-        valeur.save
+        loaded = self.instance_variable_get("@element_#{element.key}_loaded")
+        valeur.save if loaded
       end
     end
   end

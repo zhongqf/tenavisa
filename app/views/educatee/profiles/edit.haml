@@ -1,2 +1,8 @@
 %h1= "Edit #{@page.title}"
-= render "form"
+- if @profile.can_edit_by_educatee
+  = render "form"
+- else
+  %p
+    %strong= profile_message(@profile)
+  %p
+    = link_to 'Back', :back  

@@ -18,4 +18,24 @@ class Educator::ProfilesController < ApplicationController
   def update
   end
   
+  def accept
+    @profile = Profile.find(params[:id])
+    if @profile.accept && @profile.save
+      flash[:notice] = "The profile was acceptd."
+    else
+      flash[:error] = "Can not accept this profile."
+    end
+    redirect_to :back
+  end
+  
+  def deny
+    @profile = Profile.find(params[:id])
+    if @profile.deny && @profile.save
+      flash[:notice] = "The profile was denied."
+    else
+      flash[:error] = "Can not deny this profile."
+    end
+    redirect_to :back
+  end
+  
 end
