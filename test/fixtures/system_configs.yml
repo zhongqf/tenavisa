@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  profile_pdf_template_file_name: MyString
+  profile_pdf_template_content_type: MyString
+  profile_pdf_template_file_size: 1
+  profile_pdf_template_updated_at: 2010-03-20 21:11:49
+
+two:
+  profile_pdf_template_file_name: MyString
+  profile_pdf_template_content_type: MyString
+  profile_pdf_template_file_size: 1
+  profile_pdf_template_updated_at: 2010-03-20 21:11:49

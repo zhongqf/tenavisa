@@ -3,7 +3,7 @@
 coverage
 Capfile
 log
-db
+db/*.sqlite3
 .tmp*
 *.*~
 vendor/gems
