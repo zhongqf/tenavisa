@@ -6,7 +6,6 @@ admin:
   Account: create, read, update, delete
   Educatee: create, read, update, delete
   Educator: create, read, update, delete
-  Operator: create, read, update, delete
   Element: create, read, update, delete
   Profile: create, read, update, delete
   Valeur: create, read, update, delete

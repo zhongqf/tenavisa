@@ -25,25 +25,13 @@ Educatee:
 
 Educator:
   fields:
-    list: 
-    form: 
+    list: is_operator
+    form: is_operator
   order_by: 
   relationships: account, profile
   filters: 
   search: 
   application: tenavisa
-
-Operator:
-  fields:
-    list: 
-    form: 
-  order_by: 
-  relationships: account, profile
-  filters: 
-  search: 
-  application: tenavisa
-
-
 
 Element:
   fields:
