@@ -5,6 +5,7 @@ Capfile
 log
 db/*.sqlite3
 .tmp*
+*.ttf
 *.*~
 vendor/gems
 vendor/rails

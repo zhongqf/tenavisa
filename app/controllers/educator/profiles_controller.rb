@@ -19,6 +19,9 @@ class Educator::ProfilesController < ApplicationController
 
         pdf = Prawn::Document.new(:template => template)
         
+        pdf.font File.join(RAILS_ROOT, "simhei.ttf")
+        pdf.font File.join(RAILS_ROOT, "ipam.ttf")
+        
         Element.all.each do |element|
           script = element.prawn_output_script
           value = @profile.send(element.key)
