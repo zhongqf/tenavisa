@@ -8,4 +8,5 @@ db/*.sqlite3
 *.*~
 vendor/gems
 vendor/rails
+public/system
 .DS_Store

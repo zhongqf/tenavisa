@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Prawn::Text</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Prawn::Text</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/prawn/text/box_rb.html">
+                lib/prawn/text/box.rb
+                </a>
+        <br />
+                <a href="../../files/lib/prawn/text_rb.html">
+                lib/prawn/text.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000054">height_of</a>&nbsp;&nbsp;
+      <a href="#M000057">process_text_options</a>&nbsp;&nbsp;
+      <a href="#M000055">text</a>&nbsp;&nbsp;
+      <a href="#M000056">text_at</a>&nbsp;&nbsp;
+      <a href="#M000053">text_box</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Text/Box.html" class="link">Prawn::Text::Box</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VALID_TEXT_OPTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">[:kerning, :size, :style]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+These should be used as a base. Extensions may build on this list
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">skip_encoding</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">text_options</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="Text.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('Text.src/M000054.html');return false;">
+          <span class="method-name">height_of</span><span class="method-args">(string, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets height of <a href="Text.html#M000055">text</a> in PDF points. See <a
+href="Text.html#M000055">text</a>() for valid options.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="Text.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('Text.src/M000057.html');return false;">
+          <span class="method-name">process_text_options</span><span class="method-args">(options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Low level call to set the current font style and extract <a
+href="Text.html#M000055">text</a> options from an options hash. Should be
+called from within a save_font block
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="Text.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('Text.src/M000055.html');return false;">
+          <span class="method-name">text</span><span class="method-args">(text, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If you want <a href="Text.html#M000055">text</a> to flow onto a new page or
+between columns, this is the method to use. If, instead, if you want to
+place bounded <a href="Text.html#M000055">text</a> outside of the flow of a
+document (for captions, labels, charts, etc.), use <a
+href="Text/Box.html">Text::Box</a> or its convenience method <a
+href="Text.html#M000053">text_box</a>.
+</p>
+<p>
+Draws <a href="Text.html#M000055">text</a> on the page. If a point is
+specified via the <tt>:at</tt> option the <a
+href="Text.html#M000055">text</a> will begin exactly at that point, and the
+string is assumed to be pre-formatted to properly fit the page.
+</p>
+<pre>
+  pdf.text &quot;Hello World&quot;, :at =&gt; [100,100]
+  pdf.text &quot;Goodbye World&quot;, :at =&gt; [50,50], :size =&gt; 16
+</pre>
+<p>
+When <tt>:at</tt> is not specified, <a href="../Prawn.html">Prawn</a>
+attempts to wrap the <a href="Text.html#M000055">text</a> to fit within
+your current bounding box (or margin_box if no bounding box is being used
+). <a href="Text.html">Text</a> will flow onto the next page when it
+reaches the bottom of the bounding box. <a href="Text.html">Text</a> wrap
+in <a href="../Prawn.html">Prawn</a> does not re-flow linebreaks, so if you
+want fully automated <a href="Text.html#M000055">text</a> wrapping, be sure
+to remove newlines before attempting to draw your string.
+</p>
+<pre>
+  pdf.text &quot;Will be wrapped when it hits the edge of your bounding box&quot;
+  pdf.text &quot;This will be centered&quot;, :align =&gt; :center
+  pdf.text &quot;This will be right aligned&quot;, :align =&gt; :right
+</pre>
+<p>
+If your font contains kerning pairs data that <a
+href="../Prawn.html">Prawn</a> can parse, the <a
+href="Text.html#M000055">text</a> will be kerned by default. You can
+disable this feature by passing <tt>:kerning =&gt; false</tt>.
+</p>
+<h3><a href="Text.html">Text</a> Positioning Details:</h3>
+<p>
+When using the :at parameter, <a href="../Prawn.html">Prawn</a> will
+position your <a href="Text.html#M000055">text</a> by the left-most edge of
+its baseline, and flow along a single line. (This means that :align will
+not work)
+</p>
+<p>
+Otherwise, the <a href="Text.html#M000055">text</a> is positioned at
+font.ascender below the baseline, making it easy to use this method within
+bounding boxes and spans.
+</p>
+<h2>Rotation</h2>
+<p>
+<a href="Text.html">Text</a> can be rotated before it is placed on the
+canvas by specifying the <tt>:rotate</tt> option with a given angle.
+Rotation occurs counter-clockwise. Note that <tt>:rotate</tt> is only
+compatible when using the <tt>:at</tt> option
+</p>
+<h2><a href="Encoding.html">Encoding</a></h2>
+<p>
+Note that strings passed to this function should be encoded as UTF-8. If
+you get unexpected characters appearing in your rendered document, check
+this.
+</p>
+<p>
+If the current font is a built-in one, although the string must be encoded
+as UTF-8, only characters that are available in WinAnsi are allowed.
+</p>
+<p>
+If an empty box is rendered to your PDF instead of the character you wanted
+it usually means the current font doesn&#8216;t include that character.
+</p>
+<h2>Options (default values marked in [])</h2>
+<table>
+<tr><td valign="top"><tt>:kerning</tt>:</td><td><tt>boolean</tt>. Whether or not to use kerning (if it is available with
+the current font) [true]
+
+</td></tr>
+<tr><td valign="top"><tt>:size</tt>:</td><td><tt>number</tt>. The font size to use. [current font size]
+
+</td></tr>
+<tr><td valign="top"><tt>:style</tt>:</td><td>The style to use. The requested style must be part of the current font
+familly. [current style]
+
+</td></tr>
+</table>
+<h3>Additional options available when <tt>:at</tt> option is provided</h3>
+<table>
+<tr><td valign="top"><tt>:at</tt>:</td><td><tt>[x, y]</tt>. The position at which to start the <a
+href="Text.html#M000055">text</a>
+
+</td></tr>
+<tr><td valign="top"><tt>:rotate</tt>:</td><td><tt>number</tt>. The angle to which to rotate <a
+href="Text.html#M000055">text</a>
+
+</td></tr>
+</table>
+<h3>Additional options available when <tt>:at</tt> option is omitted</h3>
+<table>
+<tr><td valign="top"><tt>:align</tt>:</td><td><tt>:left</tt>, <tt>:center</tt>, or <tt>:right</tt>. Alignment within the
+bounding box [:left]
+
+</td></tr>
+<tr><td valign="top"><tt>:valign</tt>:</td><td><tt>:top</tt>, <tt>:center</tt>, or <tt>:bottom</tt>. Vertical alignment
+within the bounding box [:top]
+
+</td></tr>
+<tr><td valign="top"><tt>:leading</tt>:</td><td><tt>number</tt>. Additional space between lines [0]
+
+</td></tr>
+<tr><td valign="top"><tt>:final_gap</tt>:</td><td><tt>boolean</tt>. If true, then the space between each line is included
+below the last line; otherwise, document.y is placed just below the
+descender of the last line printed [true]
+
+</td></tr>
+<tr><td valign="top"><tt>:wrap_block</tt>:</td><td><tt>proc</tt>. A proc used for custom line wrapping. The proc must accept a
+single <tt>line</tt> of <a href="Text.html#M000055">text</a> and an
+<tt>options</tt> hash and return the string from that single line that can
+fit on the line under the conditions defined by <tt>options</tt>. If
+omitted, the default wrapping proc is used. The options hash passed into
+the wrap_block proc includes the following options:
+
+<table>
+<tr><td valign="top"><tt>:width</tt>:</td><td>the width available for the current line of <a
+href="Text.html#M000055">text</a>
+
+</td></tr>
+<tr><td valign="top"><tt>:document</tt>:</td><td>the pdf object
+
+</td></tr>
+<tr><td valign="top"><tt>:kerning</tt>:</td><td>boolean
+
+</td></tr>
+<tr><td valign="top"><tt>:size</tt>:</td><td>the font size
+
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+Raises <tt>ArgumentError</tt> if both <tt>:at</tt> and <tt>:align</tt>
+options included
+</p>
+<p>
+Raises <tt>ArgumentError</tt> if <tt>:rotate</tt> option included, but
+<tt>:at</tt> option omitted
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="Text.src/M000056.html" target="Code" class="method-signature"
+            onclick="popupCode('Text.src/M000056.html');return false;">
+          <span class="method-name">text_at</span><span class="method-args">(text, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Low level <a href="Text.html#M000055">text</a> placement method. All font
+and size alterations should already be set
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="Text.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('Text.src/M000053.html');return false;">
+          <span class="method-name">text_box</span><span class="method-args">(text, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the requested <a href="Text.html#M000055">text</a> into a box. When
+the <a href="Text.html#M000055">text</a> overflows the rectangle, you can
+display ellipses, shrink to fit, or truncate the <a
+href="Text.html#M000055">text</a>. <a href="Text.html">Text</a> boxes are
+independent of the document y position.
+</p>
+<h2><a href="Encoding.html">Encoding</a></h2>
+<p>
+Note that strings passed to this function should be encoded as UTF-8. If
+you get unexpected characters appearing in your rendered document, check
+this.
+</p>
+<p>
+If the current font is a built-in one, although the string must be encoded
+as UTF-8, only characters that are available in WinAnsi are allowed.
+</p>
+<p>
+If an empty box is rendered to your PDF instead of the character you wanted
+it usually means the current font doesn&#8216;t include that character.
+</p>
+<h2>Options (default values marked in [])</h2>
+<table>
+<tr><td valign="top"><tt>:kerning</tt>:</td><td><tt>boolean</tt>. Whether or not to use kerning (if it is available with
+the current font) [true]
+
+</td></tr>
+<tr><td valign="top"><tt>:size</tt>:</td><td><tt>number</tt>. The font size to use. [current font size]
+
+</td></tr>
+<tr><td valign="top"><tt>:style</tt>:</td><td>The style to use. The requested style must be part of the current font
+familly. [current style]
+
+</td></tr>
+<tr><td valign="top"><tt>:at</tt>:</td><td><tt>[x, y]</tt>. The upper left corner of the box [@document.bounds.left,
+@document.bounds.top]
+
+</td></tr>
+<tr><td valign="top"><tt>:width</tt>:</td><td><tt>number</tt>. The width of the box [@document.bounds.right - @at[0]]
+
+</td></tr>
+<tr><td valign="top"><tt>:height</tt>:</td><td><tt>number</tt>. The height of the box [@at[1] - @document.bounds.bottom]
+
+</td></tr>
+<tr><td valign="top"><tt>:align</tt>:</td><td><tt>:left</tt>, <tt>:center</tt>, or <tt>:right</tt>. Alignment within the
+bounding box [:left]
+
+</td></tr>
+<tr><td valign="top"><tt>:valign</tt>:</td><td><tt>:top</tt>, <tt>:center</tt>, or <tt>:bottom</tt>. Vertical alignment
+within the bounding box [:top]
+
+</td></tr>
+<tr><td valign="top"><tt>:leading</tt>:</td><td><tt>number</tt>. Additional space between lines [0]
+
+</td></tr>
+<tr><td valign="top"><tt>:overflow</tt>:</td><td><tt>:truncate</tt>, <tt>:shrink_to_fit</tt>, <tt>:expand</tt>, or
+<tt>:ellipses</tt>. This controls the behavior when the amount of <a
+href="Text.html#M000055">text</a> exceeds the available space [:truncate]
+
+</td></tr>
+<tr><td valign="top"><tt>:min_font_size</tt>:</td><td><tt>number</tt>. The minimum font size to use when :overflow is set to
+:shrink_to_fit (that is the font size will not be reduced to less than this
+value, even if it means that some <a href="Text.html#M000055">text</a> will
+be cut off). [5]
+
+</td></tr>
+<tr><td valign="top"><tt>:wrap_block</tt>:</td><td><tt>proc</tt>. A proc used for custom line wrapping. The proc must accept a
+single <tt>line</tt> of <a href="Text.html#M000055">text</a> and an
+<tt>options</tt> hash and return the string from that single line that can
+fit on the line under the conditions defined by <tt>options</tt>. If
+omitted, the default wrapping proc is used. The options hash passed into
+the wrap_block proc includes the following options:
+
+<table>
+<tr><td valign="top"><tt>:width</tt>:</td><td>the width available for the current line of <a
+href="Text.html#M000055">text</a>
+
+</td></tr>
+<tr><td valign="top"><tt>:document</tt>:</td><td>the pdf object
+
+</td></tr>
+<tr><td valign="top"><tt>:kerning</tt>:</td><td>boolean
+
+</td></tr>
+<tr><td valign="top"><tt>:size</tt>:</td><td>the font size
+
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+Returns any <a href="Text.html#M000055">text</a> that did not print under
+the current settings
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

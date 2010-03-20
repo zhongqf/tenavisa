@@ -6,4 +6,6 @@
 
 - if current_educator
   = profile_avoid_actions(@profile).join(" ")
+
+= link_to 'Generate Application in PDF', formatted_educator_profile_path(@profile, :pdf)
     

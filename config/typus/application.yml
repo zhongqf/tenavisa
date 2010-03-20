@@ -48,8 +48,8 @@ Operator:
 Element:
   fields:
     list: position, page, key, title_cn, title_jp, kind, enabled
-    form: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script
-    show: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script
+    form: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script, prawn_output_script
+    show: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script, prawn_output_script
     options:
         selectors: kind
   order_by: position
@@ -87,5 +87,12 @@ Valeur:
   relationships: element, profile
   filters: 
   search: 
+  application: tenavisa
+
+SystemConfig:
+  fields:
+    list: profile_pdf_template_file_name
+    form: profile_pdf_template_file_name
+  order_by:
   application: tenavisa
 

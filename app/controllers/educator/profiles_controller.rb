@@ -1,3 +1,6 @@
+require 'prawn/core'
+Mime::Type.register 'application/pdf', :pdf
+
 class Educator::ProfilesController < ApplicationController
   before_filter :educator_required
   
@@ -7,12 +10,42 @@ class Educator::ProfilesController < ApplicationController
   
   def show
     @profile = Profile.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        
+        template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
+
+        pdf = Prawn::Document.new(:template => template)
+        
+        Element.all.each do |element|
+          script = element.prawn_output_script
+          value = @profile.send(element.key)
+          eval(script) if script && value
+        end
+
+        send_data pdf.render
+
+      end
+    end
+
   end
 
   def edit
   end
 
   def print
+    @profile = Profile.find(params[:id])
+    
+    template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
+    outputfile = "profile_#{@profile.id}"
+    
+    pdf = Prawn::Document.new(:template => template)
+    pdf.fill_color "ff0000"
+    pdf.text "Baby, comes to me"
+    pdf.render_file outputfile
+    send_data pdf.render
   end
 
   def update

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Prawn::Document)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/prawn/document.rb, line 180</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>={},<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)   
+       <span class="ruby-constant">Prawn</span>.<span class="ruby-identifier">verify_options</span> [<span class="ruby-identifier">:page_size</span>, <span class="ruby-identifier">:page_layout</span>, <span class="ruby-identifier">:margin</span>, <span class="ruby-identifier">:left_margin</span>, 
+         <span class="ruby-identifier">:right_margin</span>, <span class="ruby-identifier">:top_margin</span>, <span class="ruby-identifier">:bottom_margin</span>, <span class="ruby-identifier">:skip_page_creation</span>, 
+         <span class="ruby-identifier">:compress</span>, <span class="ruby-identifier">:skip_encoding</span>, <span class="ruby-identifier">:text_options</span>, <span class="ruby-identifier">:background</span>, <span class="ruby-identifier">:info</span>,
+         <span class="ruby-identifier">:optimize_objects</span>, <span class="ruby-identifier">:template</span>], <span class="ruby-identifier">options</span>
+
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">reverse_each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">extend</span> <span class="ruby-identifier">e</span> }
+      
+       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>] <span class="ruby-operator">||=</span> {}
+       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>][<span class="ruby-identifier">:Creator</span>] <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;Prawn&quot;</span>
+       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>][<span class="ruby-identifier">:Producer</span>] = <span class="ruby-value str">&quot;Prawn&quot;</span>
+
+       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>][<span class="ruby-identifier">key</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>)
+           <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>][<span class="ruby-identifier">key</span>] = <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">LiteralString</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>][<span class="ruby-identifier">key</span>])
+         <span class="ruby-keyword kw">end</span>
+       <span class="ruby-keyword kw">end</span>
+          
+       <span class="ruby-ivar">@version</span> = <span class="ruby-value">1.3</span>
+       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>]
+         <span class="ruby-ivar">@store</span> = <span class="ruby-constant">ObjectStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>])
+         <span class="ruby-identifier">min_version</span>(<span class="ruby-ivar">@store</span>.<span class="ruby-identifier">min_version</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">min_version</span>
+       <span class="ruby-keyword kw">else</span>
+         <span class="ruby-ivar">@store</span> = <span class="ruby-constant">ObjectStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:info</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:info</span>])
+       <span class="ruby-keyword kw">end</span>
+       <span class="ruby-ivar">@trailer</span> = {}
+       <span class="ruby-ivar">@before_render_callbacks</span> = []
+       <span class="ruby-ivar">@on_page_create_callback</span> = <span class="ruby-keyword kw">nil</span>
+
+       <span class="ruby-ivar">@page_size</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:page_size</span>]   <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;LETTER&quot;</span>
+       <span class="ruby-ivar">@page_layout</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:page_layout</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:portrait</span>
+       <span class="ruby-ivar">@compress</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:compress</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">false</span>
+       <span class="ruby-ivar">@optimize_objects</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">:optimize_objects</span>, <span class="ruby-keyword kw">false</span>)
+       <span class="ruby-ivar">@skip_encoding</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:skip_encoding</span>]
+       <span class="ruby-ivar">@background</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:background</span>]
+       <span class="ruby-ivar">@font_size</span>     = <span class="ruby-value">12</span>
+       <span class="ruby-ivar">@page_content</span>  = <span class="ruby-keyword kw">nil</span>
+       <span class="ruby-ivar">@bounding_box</span>  = <span class="ruby-keyword kw">nil</span>
+       <span class="ruby-ivar">@margin_box</span>    = <span class="ruby-keyword kw">nil</span>
+
+       <span class="ruby-ivar">@text_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:text_options</span>] <span class="ruby-operator">||</span> {}
+              
+       <span class="ruby-identifier">apply_margin_option</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:margin</span>]
+
+       <span class="ruby-identifier">default_margin</span> = <span class="ruby-value">36</span>  <span class="ruby-comment cmt"># 0.5 inch</span>
+       <span class="ruby-ivar">@margins</span> = { <span class="ruby-identifier">:left</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:left_margin</span>]   <span class="ruby-operator">||</span> <span class="ruby-identifier">default_margin</span>,
+                    <span class="ruby-identifier">:right</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:right_margin</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">default_margin</span>,
+                    <span class="ruby-identifier">:top</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:top_margin</span>]    <span class="ruby-operator">||</span> <span class="ruby-identifier">default_margin</span>,
+                    <span class="ruby-identifier">:bottom</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:bottom_margin</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">default_margin</span>  }
+
+       <span class="ruby-ivar">@page_number</span> = <span class="ruby-value">0</span>
+
+       <span class="ruby-identifier">start_new_page</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:skip_page_creation</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>]
+
+       <span class="ruby-identifier">go_to_page</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">:finish_stream</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>]
+
+       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+         <span class="ruby-identifier">block</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">block</span>[<span class="ruby-keyword kw">self</span>]
+       <span class="ruby-keyword kw">end</span>
+     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

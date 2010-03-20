@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_options (examples/text/text_box.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File examples/text/text_box.rb, line 30</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_options</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>)
+    <span class="ruby-identifier">options</span> = {
+      <span class="ruby-identifier">:width</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">bounds</span>.<span class="ruby-identifier">width</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.3</span>,
+      <span class="ruby-identifier">:height</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">bounds</span>.<span class="ruby-identifier">width</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.3</span>,
+      <span class="ruby-identifier">:overflow</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:ellipses</span>,
+      <span class="ruby-identifier">:at</span>       =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">0</span>, <span class="ruby-value">0</span>],
+      <span class="ruby-identifier">:align</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:left</span>,
+      <span class="ruby-identifier">:document</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>
+    }
+    
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">i</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:valign</span>] = <span class="ruby-identifier">:top</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:align</span>] = <span class="ruby-identifier">:center</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:valign</span>] = <span class="ruby-identifier">:center</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:align</span>] = <span class="ruby-identifier">:right</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:valign</span>] = <span class="ruby-identifier">:bottom</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">j</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:overflow</span>] = <span class="ruby-identifier">:shrink_to_fit</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:leading</span>] = <span class="ruby-identifier">font</span>.<span class="ruby-identifier">height</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.5</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:overflow</span>] = <span class="ruby-identifier">:truncate</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

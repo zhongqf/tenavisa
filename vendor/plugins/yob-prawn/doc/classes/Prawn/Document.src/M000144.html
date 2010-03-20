@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>go_to_page (Prawn::Document)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/prawn/document.rb, line 308</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">go_to_page</span>(<span class="ruby-identifier">k</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-constant">Prawn</span>.<span class="ruby-identifier">verify_options</span> [<span class="ruby-identifier">:finish_stream</span>], <span class="ruby-identifier">options</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:finish_stream</span>]= <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:finish_stream</span>].<span class="ruby-identifier">nil?</span>
+
+      <span class="ruby-ivar">@page_number</span> = <span class="ruby-identifier">k</span>
+      <span class="ruby-identifier">jump_to</span> = <span class="ruby-ivar">@store</span>[<span class="ruby-ivar">@store</span>.<span class="ruby-identifier">object_id_for_page</span>(<span class="ruby-identifier">k</span>)]
+      <span class="ruby-ivar">@current_page</span> = <span class="ruby-identifier">jump_to</span>.<span class="ruby-identifier">identifier</span>
+      <span class="ruby-ivar">@page_content</span> = <span class="ruby-identifier">new_content_stream</span>(<span class="ruby-identifier">options</span>)
+
+      <span class="ruby-identifier">generate_margin_box</span>
+      <span class="ruby-identifier">update_colors</span>
+
+      <span class="ruby-ivar">@bounding_box</span> = <span class="ruby-ivar">@margin_box</span>
+
+      <span class="ruby-ivar">@y</span> = <span class="ruby-ivar">@bounding_box</span>.<span class="ruby-identifier">absolute_top</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

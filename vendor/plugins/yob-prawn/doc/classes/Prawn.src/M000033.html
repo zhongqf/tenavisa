@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>PdfObject (Prawn)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/prawn/pdf_object.rb, line 31</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">in_content_stream</span> = <span class="ruby-keyword kw">false</span>)
+    <span class="ruby-keyword kw">case</span>(<span class="ruby-identifier">obj</span>)        
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NilClass</span>   <span class="ruby-keyword kw">then</span> <span class="ruby-value str">&quot;null&quot;</span> 
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TrueClass</span>  <span class="ruby-keyword kw">then</span> <span class="ruby-value str">&quot;true&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FalseClass</span> <span class="ruby-keyword kw">then</span> <span class="ruby-value str">&quot;false&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Numeric</span>    <span class="ruby-keyword kw">then</span> <span class="ruby-constant">String</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+      <span class="ruby-value str">&quot;[&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">e</span>, <span class="ruby-identifier">in_content_stream</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;]&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">LiteralString</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[\\\n\(\)]/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\\#{m}&quot;</span> }
+      <span class="ruby-node">&quot;(#{obj})&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Time</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;D:%Y%m%d%H%M%S%z&quot;</span>).<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">chop</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;'00'&quot;</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[\\\n\(\)]/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\\#{m}&quot;</span> }
+      <span class="ruby-node">&quot;(#{obj})&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">ByteString</span>
+      <span class="ruby-value str">&quot;&lt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-value str">&quot;\xFE\xFF&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;U*&quot;</span>).<span class="ruby-identifier">pack</span>(<span class="ruby-value str">&quot;n*&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">in_content_stream</span>
+      <span class="ruby-value str">&quot;&lt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;&quot;</span>
+     <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>                                                         
+       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\s/</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">FailedObjectConversion</span>, 
+           <span class="ruby-value str">&quot;A PDF Name cannot contain whitespace&quot;</span>  
+       <span class="ruby-keyword kw">else</span>
+         <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>   
+       <span class="ruby-keyword kw">end</span> 
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>           
+      <span class="ruby-identifier">output</span> = <span class="ruby-value str">&quot;&lt;&lt; &quot;</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>  
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Symbol</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">k</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">FailedObjectConversion</span>, 
+            <span class="ruby-value str">&quot;A PDF Dictionary must be keyed by names&quot;</span>
+        <span class="ruby-keyword kw">end</span>                          
+        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">in_content_stream</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">&lt;&lt;</span> 
+                  <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">v</span>, <span class="ruby-identifier">in_content_stream</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+      <span class="ruby-keyword kw">end</span>  
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;&gt;&quot;</span>  
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">Reference</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_s</span>      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">NameTree</span><span class="ruby-operator">::</span><span class="ruby-constant">Node</span>
+      <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_hash</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">NameTree</span><span class="ruby-operator">::</span><span class="ruby-constant">Value</span>
+      <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">name</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">OutlineRoot</span>, <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">OutlineItem</span>
+      <span class="ruby-constant">PdfObject</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_hash</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Prawn</span><span class="ruby-operator">::</span><span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">FailedObjectConversion</span>, 
+        <span class="ruby-node">&quot;This object cannot be serialized to PDF (#{obj.inspect})&quot;</span>
+    <span class="ruby-keyword kw">end</span>     
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
