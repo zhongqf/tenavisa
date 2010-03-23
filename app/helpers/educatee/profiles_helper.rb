@@ -2,7 +2,17 @@ module Educatee::ProfilesHelper
   
   def make_element_form(element, form)
     template_name = "educatee/templates/#{element.kind}"
-    render template_name, :element => element, :form => form, :options => {}
+    
+    options = {}
+    
+    param_script = element.params
+    
+    if param_script
+      param_value = eval(param_script)
+      options = param_value[:options] if param_value
+    end
+    
+    render template_name, :element => element, :form => form, :options => options
   end
   
   def make_form_for(elements, form)

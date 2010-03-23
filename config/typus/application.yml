@@ -69,7 +69,7 @@ Profile:
 
 Valeur:
   fields:
-    list: element_key, profile, element
+    list: element_key, valeur, profile, element
     form: element_key, valeur, profile, element
   order_by: 
   relationships: element, profile

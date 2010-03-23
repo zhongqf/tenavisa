@@ -29,7 +29,10 @@ class Educatee::ProfilesController < ApplicationController
 
   def update
     @profile = current_educatee.profile
-    if @profile.update_attributes(params[:profile])
+    
+    safe = multi_attribute_as_date(params[:profile])
+
+    if @profile.update_attributes(safe)
       flash[:notice] = "Profile updated."
       redirect_to educatee_dashboard_path
     else
@@ -39,5 +42,30 @@ class Educatee::ProfilesController < ApplicationController
 
   def print
   end
+  
+  private
+  
+    def multi_attribute_as_date(params)
+      
+      safe = {}
+      keys = params.keys
+      
+      for key in keys
+        if key.include?("(")
+          name = key.split("(").first
+          
+          next if safe.has_key?(name)
+          
+          year = params["#{name}(1i)"].to_i
+          month = params["#{name}(2i)"].to_i
+          day = params["#{name}(3i)"].to_i
+          
+          safe[name] = Date.new(year, month, day)
+        else
+          safe[key] = params[key]
+        end
+      end
+      safe
+    end
 
 end
