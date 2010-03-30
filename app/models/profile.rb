@@ -4,7 +4,6 @@ class Profile < ActiveRecord::Base
   
   after_save :update_elements
   
-  
   include AASM
   
   aasm_column :status
@@ -35,63 +34,54 @@ class Profile < ActiveRecord::Base
   end
   
   Element.find(:all).each do |element|
-    attr_writer element.key.intern
+    attr_accessor element.key.intern
   end
+  attr_accessor :all_element_valeurs_loaded
   
-  def method_missing(method_id, *arg)
-    @element_keys ||= Element.all.collect(&:key)
-    
-    if (@element_keys.include?(method_id.to_s))
-      loaded = self.instance_variable_get("@all_element_valeurs_loaded")
-      unless loaded
-        logger.debug "====== load element valeurs ======"
-        self.valeurs.each do |valeur|
-          self.instance_variable_set("@#{valeur.element_key.to_s}", valeur.nil? ? nil : valeur.valeur )
-        end
-        self.instance_variable_set("@all_element_valeurs_loaded", true)
-      end
-      return self.instance_variable_get("@#{method_id.to_s}")
+  def after_initialize
+    self.valeurs.each do |valeur|
+      self.send(:"#{valeur.element_key.to_s}=", valeur.nil? ? nil : valeur.valeur )
     end
-    super
   end
+
   
   def update_elements
+    logger.debug self.to_yaml
+    
     Element.transaction do
       Element.all.each do |element|
-        logger.debug "====== updating #{element.key} ======"
+       
         valeur = valeurs.find_or_create_by_element_id(element.id)
         valeur.element_key = element.key
-        valeur.valeur = self.instance_variable_get("@#{element.key}")
-        loaded = self.instance_variable_get("@all_element_valeurs_loaded")
-        valeur.save #if loaded        
+        
+        value = self.send(:"#{element.key}") #self.instance_variable_get("@#{element.key}")
+
+        if value.respond_to?(:original_filename) #FIXME
+          
+          #TODO: image only
+          #TODO: resize the image
+                    
+          if !value.original_filename.empty?
+            filename = value.original_filename
+            fullpath = "#{RAILS_ROOT}/public/upload/value/#{valeur.id}/"
+            @fullname = "#{fullpath}#{filename}"
+            
+            FileUtils.remove_file(@fullname) if File.exists?(@fullname)
+            FileUtils.mkdir_p fullpath
+            
+            File.open(@fullname,"wb") do |f|
+              f.write(value.read)
+            end
+          end  
+          valeur.valeur = @fullname
+        else
+          valeur.valeur = value
+        end
+        
+        valeur.save        
       end
     end
   end
-  
-  #def update_elements
-  #  Element.transaction do 
-  #    Element.find(:all).each do |element|
-  #      valeur = valeurs.find_or_create_by_element_id(element.id)
-  #      valeur.element_key = element.key
-  #      valeur.valeur = self.instance_variable_get("@#{element.key}")
-  #      loaded = self.instance_variable_get("@element_#{element.key}_loaded")
-  #      valeur.save if loaded
-  #    end
-  #  end
-  #end
-  #
-  #def method_missing(method_id, *arg)    
-  #  @element_keys ||= Element.find(:all).collect(&:key)
-  #  if (@element_keys.include?(method_id.to_s))
-  #    loaded = self.instance_variable_get("@element_#{method_id.to_s}_loaded")
-  #    unless loaded
-  #      logger.debug "loading #{method_id}"
-  #      valeur = self.valeurs.find_by_element_key(method_id.to_s)
-  #      self.instance_variable_set("@#{method_id.to_s}", valeur.nil? ? nil : valeur.valeur)
-  #      self.instance_variable_set("@element_#{method_id.to_s}_loaded", true)
-  #    end
-  #    return self.instance_variable_get("@#{method_id.to_s}")
-  #  end
-  #  super
-  #end
+
+
 end

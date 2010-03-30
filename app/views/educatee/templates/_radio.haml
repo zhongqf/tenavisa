@@ -3,6 +3,8 @@
 
 %p
   = form.label element.key, element.title_cn
-  %br/
   - values.each do |value|
-    = form.radio_button(element.key, value) + value
+    %br/
+    = form.radio_button(element.key, value)
+    = value
+    

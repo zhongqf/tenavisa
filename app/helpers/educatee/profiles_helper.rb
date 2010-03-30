@@ -1,6 +1,6 @@
 module Educatee::ProfilesHelper
   
-  def make_element_form(element, form)
+  def make_element_form(element, form, profile)
     template_name = "educatee/templates/#{element.kind}"
     
     options = {}
@@ -12,17 +12,17 @@ module Educatee::ProfilesHelper
       options = param_value[:options] if param_value
     end
     
-    render template_name, :element => element, :form => form, :options => options
+    render template_name, :element => element, :form => form, :options => options, :profile => profile
   end
   
-  def make_form_for(elements, form)
+  def make_form_for(elements, form, profile)
     
     returning(String.new) do |html|
       
       html << content_tag(:h3,"Error message goes here.")
       
       elements.each do |element|
-        html << make_element_form(element, form)
+        html << make_element_form(element, form, profile)
       end
 
     end.html_safe!

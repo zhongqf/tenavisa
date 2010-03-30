@@ -10,4 +10,5 @@ db/*.sqlite3
 vendor/gems
 vendor/rails
 public/system
+public/upload
 .DS_Store
