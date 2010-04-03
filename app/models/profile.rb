@@ -60,6 +60,7 @@ class Profile < ActiveRecord::Base
           
           #TODO: image only
           #TODO: resize the image
+          #TODO: big file?
                     
           if !value.original_filename.empty?
             filename = value.original_filename

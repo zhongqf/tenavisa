@@ -1,0 +1,41 @@
+!!!strict
+%head
+  %meta{"http-equiv"=>"Content-Type", "content"=>"text/html; charset=utf-8"}
+  %title Tenavisa
+  = stylesheet_link_tag 'compiled/screen', :media => "screen, projection"
+  = stylesheet_link_tag 'compiled/print', :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag 'compiled/ie', :media => "screen, projection"
+
+%body.bp.three-col
+  #container
+    #header
+      %h1
+        = link_to 'Tenavisa', '/'
+      #header_links
+        %div
+          = link_to 'Help', ''
+          |
+          - if logged_in?
+            = link_to 'Logout', logout_path
+          - else
+            = link_to 'Login', login_path
+        %div
+          - if logged_in?
+            = "Logged as #{current_account.email} ( #{current_account.loginable.class} )"
+      #header_navis
+        %ul
+          %li.current= link_to 'Dashboard'
+          %li= link_to 'Accounts'
+          %li= link_to 'Posts'
+          %li= link_to 'Blogs'
+          %li= link_to 'Settings'
+    #sidebar
+      %h3 Sidebar
+      %ul
+        %li one
+        %li two
+    #content
+      = yield
+    #footer
+      Footer ---------------------
