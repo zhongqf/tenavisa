@@ -36,6 +36,14 @@ class Educator::ProfilesController < ApplicationController
   end
 
   def edit
+    begin
+      @profile = Profile.find(params[:id])      
+      @page = Page.find(params[:page])
+      @submit_path = educator_profile_path(@profile)
+      @elements = @page.elements
+    rescue
+      redirect_to edit_educator_profile_path(@profile, :page => Page.first) if @page.blank?
+    end
   end
 
   def print

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100320132856) do
+ActiveRecord::Schema.define(:version => 20100404150207) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -77,6 +77,12 @@ ActiveRecord::Schema.define(:version => 20100320132856) do
     t.datetime "profile_pdf_template_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "system_activation_mailtext"
+    t.text     "system_register_mailtext"
+    t.text     "profile_submit_mailtext"
+    t.text     "profile_deny_mailtext"
+    t.text     "profile_accept_mailtext"
+    t.text     "profile_register_mailtext"
   end
 
   create_table "typus_users", :force => true do |t|

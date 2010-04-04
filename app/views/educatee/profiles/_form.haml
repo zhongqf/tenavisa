@@ -1,4 +1,4 @@
-- form_for @profile, :url => educatee_profile_path, :html => { :multipart => true} do |form|
+- form_for @profile, :url => @submit_path, :html => { :multipart => true} do |form|
   %fieldset.inputs
     = make_form_for(@elements, form, @profile)
   %fieldset.buttons

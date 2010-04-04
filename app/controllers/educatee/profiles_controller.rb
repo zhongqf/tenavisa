@@ -10,6 +10,7 @@ class Educatee::ProfilesController < ApplicationController
       @profile = current_educatee.profile
       
       @page = Page.find(params[:page])
+      @submit_path = educatee_profile_path
       @elements = @page.elements
     rescue
       redirect_to edit_educatee_profile_path(:page => Page.first) if @page.blank?

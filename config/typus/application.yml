@@ -80,7 +80,9 @@ Valeur:
 SystemConfig:
   fields:
     list: profile_pdf_template_file_name
-    form: profile_pdf_template_file_name
+    form: profile_pdf_template_file_name, profile_register_mailtext, profile_accept_mailtext, profile_deny_mailtext, profile_submit_mailtext, system_register_mailtext, system_activation_mailtext
+    
+    
   order_by:
   application: tenavisa
 

@@ -28,6 +28,10 @@ class Profile < ActiveRecord::Base
   def can_edit_by_educatee
     [:new, :denied].include?(self.aasm_current_state)
   end
+
+  def can_edit_by_educator
+    [:submitted].include?(self.aasm_current_state)
+  end
   
   def profile_check
     true

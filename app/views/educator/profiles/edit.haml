@@ -1,2 +1,8 @@
-<h1>Educator::Profiles#edit</h1>
-<p>Find me in app/views/educator/profiles/edit.html.erb</p>
+%h1= "Edit #{@page.title}"
+- if @profile.can_edit_by_educator
+  = render "educatee/profiles/form"
+- else
+  %p
+    %strong You can not edit this profile
+  %p
+    = link_to 'Back', :back  

@@ -6,4 +6,7 @@
     %li
       %strong= element.title_cn
       = ":"
-      = @profile.send(element.key)
+      - if element.kind == "file"
+        = image_tag(@profile.send(element.key), :size => "100x135")
+      - else
+        = @profile.send(element.key)
