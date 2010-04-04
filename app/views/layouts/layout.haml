@@ -4,6 +4,7 @@
   %title Tenavisa
   = stylesheet_link_tag 'compiled/screen', :media => "screen, projection"
   = stylesheet_link_tag 'compiled/print', :media => "print"
+  = stylesheet_link_tag 'compiled/style', :media => "screen, projection"
   /[if lt IE 8]
     = stylesheet_link_tag 'compiled/ie', :media => "screen, projection"
 
@@ -22,7 +23,7 @@
             = link_to 'Login', login_path
         %div
           - if logged_in?
-            = "Logged as #{current_account.email} ( #{current_account.loginable.class} )"
+            = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, ''}"
       #header_navis
         %ul
           %li.current= link_to 'Dashboard'
@@ -31,11 +32,14 @@
           %li= link_to 'Blogs'
           %li= link_to 'Settings'
     #sidebar
-      %h3 Sidebar
-      %ul
-        %li one
-        %li two
+      #sidebar_wrap
+        %h3 Sidebar
+        %ul
+          %li one
+          %li two
     #content
-      = yield
+      #content_wrap
+        = yield
     #footer
-      Footer ---------------------
+      #footer_wrap
+        Footer ---------------------

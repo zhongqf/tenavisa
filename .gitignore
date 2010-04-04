@@ -7,6 +7,7 @@ db/*.sqlite3
 .tmp*
 *.ttf
 *.*~
+tmp
 vendor/gems
 vendor/rails
 public/system

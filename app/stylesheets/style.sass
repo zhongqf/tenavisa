@@ -1,0 +1,60 @@
+!bgcolor = #f3f3f3
+!bgtabcolor = #e48743
+!tabheight = 25px
+
+body
+  background:
+    color= !bgcolor
+    image: url(/images/styles/background.png)
+    position: top left 
+    repeat: repeat-x
+#content_wrap, #sidebar_wrap, #footer_wrap
+  margin-top: 5px
+  background:
+    color: #fff
+  border: 1px solid #ccc
+  padding: 10px
+#header
+  height: 70px  
+  #header_links
+    font-size: 90%
+    padding: 5px 0px
+    div
+      height: 15px
+      line-height: 15px
+    float: right
+    text-align: right
+    color: #aaa
+    a
+      text-decoration: none
+      color: #fff
+  
+  #header_navis
+    padding-left: 1px
+    clear: both
+    padding-top= 30px - !tabheight
+    height= !tabheight
+    ul
+      position: relative
+      list-style: none
+      margin: 0
+    li
+      float: left
+      margin-right: 3px
+      background:
+        color= !bgtabcolor
+      a
+        line-height= !tabheight
+        font-weight: bold
+        text-decoration: none
+        color: #333
+        padding: 0px 10px
+    li.current
+      background:
+        color= !bgcolor
+      
+  h1
+    float: right
+    a
+      display: none
+

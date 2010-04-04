@@ -63,18 +63,23 @@ class Profile < ActiveRecord::Base
           #TODO: big file?
                     
           if !value.original_filename.empty?
+            publicpath = File.join(RAILS_ROOT, "public")
+            filepath = "/upload/value/#{valeur.id}"
             filename = value.original_filename
-            fullpath = "#{RAILS_ROOT}/public/upload/value/#{valeur.id}/"
-            @fullname = "#{fullpath}#{filename}"
             
-            FileUtils.remove_file(@fullname) if File.exists?(@fullname)
+            fullpath = File.join(publicpath, filepath)
+            fullfilename = File.join(fullpath, filename)
+            
+            @savefilename = File.join(filepath, filename)
+
+            FileUtils.remove_file(fullfilename) if File.exists?(fullfilename)
             FileUtils.mkdir_p fullpath
             
-            File.open(@fullname,"wb") do |f|
+            File.open(fullfilename,"wb") do |f|
               f.write(value.read)
             end
           end  
-          valeur.valeur = @fullname
+          valeur.valeur = @savefilename
         else
           valeur.valeur = value
         end
