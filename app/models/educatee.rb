@@ -1,6 +1,6 @@
 class Educatee < ActiveRecord::Base
-  has_one :account, :as => :loginable
-  has_one :profile
+  has_one :account, :as => :loginable, :dependent => :destroy
+  has_one :profile, :dependent=> :destroy
   
   after_create :create_my_profile
   

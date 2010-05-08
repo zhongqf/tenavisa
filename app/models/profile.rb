@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  has_many :valeurs
+  has_many :valeurs, :dependent => :destroy
   belongs_to :educatee
   
   after_save :update_elements

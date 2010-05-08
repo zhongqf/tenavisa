@@ -1,7 +1,7 @@
 require 'digest/sha1'
 
 class Account < ActiveRecord::Base
-  belongs_to :loginable, :polymorphic => true
+  belongs_to :loginable, :polymorphic => true, :dependent => :destroy
   include ::Authentication
   include ::Authentication::ByPassword
   include ::Authentication::ByCookieToken

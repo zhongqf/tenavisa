@@ -1,3 +1,3 @@
 class Page < ActiveRecord::Base
-  has_many :elements
+  has_many :elements, :dependent => :destroy
 end
