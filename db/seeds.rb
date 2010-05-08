@@ -57,7 +57,7 @@ e11 = Element.create!(:key => "nationality", :kind => "string", :title_cn => "�
 e12 = Element.create!(:key => "birthday", :kind => "date", :title_cn => "出生年月", :title_jp => "生年月日", :page => pages.first)
 e13 = Element.create!(:key => "name_in_chinese", :kind => "string", :title_cn => "中文姓名", :title_jp => "中国語名前", :page => pages.first)
 e14 = Element.create!(:key => "name_in_english", :kind => "string", :title_cn => "英文姓名", :title_jp => "英語名前", :page => pages.first)
-e15 = Element.create!(:key => "sex", :kind => "selector", :title_cn => "性别", :title_jp => "性別", :page => pages.first)
+e15 = Element.create!(:key => "sex", :kind => "selector", :params => "{:values => ['男','女']}":title_cn => "性别", :title_jp => "性別", :page => pages.first)
 e16 = Element.create!(:key => "place_of_birth", :kind => "string", :title_cn => "出生地", :title_jp => "出生地", :page => pages.first)
 e17 = Element.create!(:key => "photo", :kind => "file", :title_cn => "照片", :title_jp => "写真", :page => pages.first)
 e21 = Element.create!(:key => "address_in_japan", :kind => "string", :title_cn => "在日居住地", :title_jp => "連絡先", :page => pages.second)
