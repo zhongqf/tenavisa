@@ -7,7 +7,8 @@
           = "Edit your #{link_to page.title, edit_educatee_profile_path(:page => page)}"
     - else
       %li Your profile is in review. You can not edit your profile now.
-
+%p= link_to 'View my profile', educatee_profile_path
+%hr
 .msg
   %strong= profile_message(@profile)
     

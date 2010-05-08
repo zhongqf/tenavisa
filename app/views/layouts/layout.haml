@@ -26,17 +26,33 @@
             = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, ''}"
       #header_navis
         %ul
-          %li.current= link_to 'Dashboard'
-          %li= link_to 'Accounts'
-          %li= link_to 'Posts'
-          %li= link_to 'Blogs'
-          %li= link_to 'Settings'
+          - if logged_in?
+            %li.current= link_to 'Dashboard', current_account.loginable.is_a?(Educatee) ? educatee_dashboard_path : educator_dashboard_path
+          - else
+            %li.current= link_to 'Login', login_path
+          %li=# link_to 'Accounts'
+          %li=# link_to 'Posts'
+          %li=# link_to 'Blogs'
+          %li=# link_to 'Settings'
     #sidebar
       #sidebar_wrap
         %h3 Sidebar
-        %ul
-          %li one
-          %li two
+        %p
+          %strong Sample Users
+          %dt
+            Educatee
+          %dd
+            joe andy mary danny aaron jack
+          %dt
+            Educator
+          %dd
+            jeff ben lucas
+          %dt
+            Operator
+          %dd
+            james
+          %br
+          %small all password is 000000
     #content
       #content_wrap
         = yield

@@ -7,6 +7,9 @@
       %strong= element.title_cn
       = ":"
       - if element.kind == "file"
-        = image_tag(@profile.send(element.key), :size => "100x135")
+        - if @profile.send(element.key)
+          = image_tag(@profile.send(element.key), :size => "100x135")
+        - else
+          No file uploaded yet.
       - else
         = @profile.send(element.key)
