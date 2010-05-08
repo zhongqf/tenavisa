@@ -1,4 +1,6 @@
-- values = eval(element.params)[:values]
+- values = ["Set params to {:values => ['Value 1','Value 2']}"]
+- values = eval(element.params)[:values] unless (element.params.blank? || element.params.nil? )
+
 - values = values.invert if values.kind_of?(Hash)
 
 %p
