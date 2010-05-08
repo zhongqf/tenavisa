@@ -12,4 +12,5 @@ vendor/gems
 vendor/rails
 public/system
 public/upload
+public/stylesheets/compiled
 .DS_Store
