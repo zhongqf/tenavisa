@@ -28,6 +28,7 @@ puts "   Generate sample educatees ..."
   account.loginable = educatee
   educatee.save!
   account.save!
+  account.activate!
 end
 puts "   Generate sample educators ..."
 %w(Jeff Ben Lucas).each do |name|
@@ -36,6 +37,7 @@ puts "   Generate sample educators ..."
   account.loginable = educator
   educator.save!
   account.save!
+  account.activate!
 end
 puts "   Generate sample operators ..."
   account = Account.create(:login => "JAMES", :password => "000000", :password_confirmation => "000000", :email => "james@wxtengu.net")
@@ -43,6 +45,7 @@ puts "   Generate sample operators ..."
   account.loginable = operator
   operator.save!
   account.save!
+  account.activate!
   
 puts "   Generate sample pages ..."
   pages = Page.create!([{:title => "Basic Info"}, {:title => "Education"}, {:title => "Passport"}])
