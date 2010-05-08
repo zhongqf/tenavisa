@@ -61,9 +61,9 @@ e15 = Element.create!(:key => "sex", :kind => "selector", :params => "{:values =
 e16 = Element.create!(:key => "place_of_birth", :kind => "string", :title_cn => "出生地", :title_jp => "出生地", :page => pages.first)
 e17 = Element.create!(:key => "photo", :kind => "file", :title_cn => "照片", :title_jp => "写真", :page => pages.first)
 e21 = Element.create!(:key => "address_in_japan", :kind => "string", :title_cn => "在日居住地", :title_jp => "連絡先", :page => pages.second)
-e22 = Element.create!(:key => "tel", :kind => "date", :title_cn => "电话号码", :title_jp => "電話番号", :page => pages.second)
+e22 = Element.create!(:key => "tel", :kind => "string", :title_cn => "电话号码", :title_jp => "電話番号", :page => pages.second)
 e23 = Element.create!(:key => "cellular", :kind => "string", :title_cn => "携带电话号码", :title_jp => "携帯番号", :page => pages.second)
 e24 = Element.create!(:key => "passport_no", :kind => "string", :title_cn => "护照号码", :title_jp => "旅券番号", :page => pages.last)
-e25 = Element.create!(:key => "passport_expiration", :kind => "selector", :title_cn => "护照有效期", :title_jp => "旅券有効期限", :page => pages.last)
+e25 = Element.create!(:key => "passport_expiration", :kind => "string", :title_cn => "护照有效期", :title_jp => "旅券有効期限", :page => pages.last)
 
 puts "Over."

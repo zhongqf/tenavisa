@@ -19,11 +19,14 @@
 /   <%= typus_preview(@item, attribute) %>
 / </li>
 /
-
+- filepath = profile.send(:"#{element.key}")
 
 %p
   = form.label element.key, element.title_cn
   %br/
-  = image_tag(profile.send(:"#{element.key}"), :size => "100x135")
+  - if filepath.nil? || filepath.blank?
+    No file uploaded yet.
+  - else
+    = image_tag(profile.send(:"#{element.key}"), :size => "100x135")
   %br/
   = form.file_field element.key, options
