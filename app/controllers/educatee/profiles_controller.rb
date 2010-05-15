@@ -28,11 +28,12 @@ class Educatee::ProfilesController < ApplicationController
   end
       
 
-  def update
-    
+  def update    
     @profile = current_educatee.profile
     
-    safe = multi_attribute_as_date(params[:profile])
+    safe = multi_check_safe(params[:profile], params)
+    safe = multi_attribute_as_date(safe)
+  
   
     if @profile.update_attributes(safe)
       flash[:notice] = "Profile updated."
@@ -46,6 +47,34 @@ class Educatee::ProfilesController < ApplicationController
   end
   
   private
+  
+    def multi_check_safe(profile, params)
+      safe = {}
+      keys = profile.keys
+      
+      for key in keys
+        if profile[key] == "multicheck"
+          value = {}
+          count = params["#{key}_options_count"].to_i
+          for i in 0..count-1
+            title_key = "#{key}_option_title_#{i}"
+            option_key = "#{key}_option_#{i}"
+            additional_key = "#{key}_additional_#{i}"
+            
+            checked = params.has_key?(option_key) && (params[option_key] == "1")
+            has_additional = params.has_key?(additional_key)
+            
+            value[params[title_key]] = checked ? (has_additional ? params[additional_key] : checked) : checked
+            
+            safe[key] = value
+          end
+        else
+          safe[key] = profile[key]
+        end
+      end
+      
+      safe
+    end
   
     def multi_attribute_as_date(params)
       
