@@ -1,6 +1,9 @@
 class Element < ActiveRecord::Base
   belongs_to :page
   
+  validates_uniqueness_of :key
+  validates_presence_of :key
+  
   #KIND = %w(boolean date datetime file password rich_text radio selector string text time)
   KIND = %w(boolean date file radio selector string text multicheck)
   validates_inclusion_of :kind, :in => KIND
