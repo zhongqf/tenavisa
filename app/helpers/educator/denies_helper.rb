@@ -1,0 +1,2 @@
+module Educator::DeniesHelper
+end

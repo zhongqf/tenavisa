@@ -1,0 +1,11 @@
+%h1 Deny
+
+- form_for @deny, :url => educator_profile_deny_path  do |form|
+  
+  %p 
+    = form.label "Input your deny reason here:"
+    %br/
+    = form.text_area :reason
+  
+  %p
+    = form.submit "Deny"

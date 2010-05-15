@@ -7,7 +7,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace :educator do |educator|
     educator.resource :dashboard
-    educator.resources :profiles, :member => {:accept => :post, :deny => :post}
+    educator.resources :profiles, :member => {:accept => :post} do |profile|
+      profile.resource :deny
+    end
     educator.resources :educators
   end
   

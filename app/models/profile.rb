@@ -2,6 +2,8 @@ class Profile < ActiveRecord::Base
   has_many :valeurs, :dependent => :destroy
   belongs_to :educatee
   
+  has_one :deny_info, :class_name => "Deny"
+  
   after_save :update_elements
   
   include AASM

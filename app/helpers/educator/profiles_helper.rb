@@ -20,7 +20,7 @@ module Educator::ProfilesHelper
         when :accept
           html << link_to('Accept', accept_educator_profile_path(@profile), :method => :post)
         when :deny
-          html << link_to('Deny', deny_educator_profile_path(@profile), :method => :post)
+          html << link_to('Deny', educator_profile_deny_path(@profile))
         end
       end
     end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100515055821) do
+ActiveRecord::Schema.define(:version => 20100515064708) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20100515055821) do
   end
 
   add_index "accounts", ["login"], :name => "index_accounts_on_login", :unique => true
+
+  create_table "denies", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "educator_id"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "educatees", :force => true do |t|
     t.datetime "created_at"

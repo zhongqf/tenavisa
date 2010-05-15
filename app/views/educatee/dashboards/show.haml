@@ -1,5 +1,16 @@
 %h1 Dashboard
+
+
+      
 .box
+  - if @profile.aasm_current_state == :denied
+    %p
+      Your profile was denied.
+      %br
+      %strong Reason:
+      %br
+      %quoto= @profile.deny_info.reason
+      
   %ul
     - if [:new, :denied].include?(@profile.aasm_current_state)
       - Page.all.each do |page|
