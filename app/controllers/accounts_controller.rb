@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
     @educatee = Educatee.new
     success = @account && ( @account.loginable = @educatee ) && @account.save 
     if success && @account.errors.empty?
-      redirect_back_or_default('/')
+      redirect_back_or_default(root_path)
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
     if @account.save
       flash[:notice] = "Your password reseted. Relogin please."
       logout_keeping_session!
-      redirect_back_or_default('/')
+      redirect_back_or_default(root_path)
     else
       flash[:notice] = "Cannot reset your password. please try again."
       redirect_to :back
@@ -52,10 +52,10 @@ class AccountsController < ApplicationController
       redirect_to '/'
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
-      redirect_back_or_default('/')
+      redirect_back_or_default(root_path)
     else 
       flash[:error]  = "We couldn't find a account with that activation code -- check your email? Or maybe you've already activated -- try signing in."
-      redirect_back_or_default('/')
+      redirect_back_or_default(root_path)
     end
   end
 end

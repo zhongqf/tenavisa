@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100404150207) do
+ActiveRecord::Schema.define(:version => 20100515055821) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20100404150207) do
     t.datetime "updated_at"
     t.integer  "page_id"
     t.text     "prawn_output_script"
+    t.boolean  "is_title"
+    t.integer  "display_index"
   end
 
   create_table "pages", :force => true do |t|

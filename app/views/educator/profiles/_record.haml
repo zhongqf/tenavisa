@@ -1,3 +1,8 @@
 %tr
-  %td= link_to profile.id, educator_profile_path(profile)
+  - Element.display_columns.each do |column|
+    %td
+      - if column.is_title
+        = link_to profile.send(:"#{column.key}"), educator_profile_path(profile)
+      - else
+        = profile.send(:"#{column.key}")
   %td= profile.status

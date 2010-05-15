@@ -5,4 +5,6 @@ class Element < ActiveRecord::Base
   KIND = %w(boolean date file radio selector string text)
   validates_inclusion_of :kind, :in => KIND
   
+  
+  named_scope :display_columns, { :conditions => ["display_index > 0 or is_title = ?", true], :order => "is_title desc, display_index" }
 end

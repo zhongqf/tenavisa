@@ -35,9 +35,9 @@ Educator:
 
 Element:
   fields:
-    list: position, page, key, title_cn, title_jp, kind, enabled
-    form: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script, prawn_output_script
-    show: key, page, title_cn, title_jp, kind, description, params, enabled, validation_script, prawn_output_script
+    list: position, page, key, title_cn, title_jp, kind, display_index, is_title, enabled
+    form: key, page, title_cn, title_jp, kind, description, params, enabled, is_title, display_index, validation_script, prawn_output_script
+    show: key, page, title_cn, title_jp, kind, description, params, enabled, is_title, display_index, validation_script, prawn_output_script
     options:
         selectors: kind
   order_by: position

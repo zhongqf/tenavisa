@@ -37,6 +37,13 @@ class Profile < ActiveRecord::Base
     true
   end
   
+  
+  def title
+    title_element = Element.find_by_is_title(true)
+    return "No title element defined" if title_element.nil?
+    return self.send(:"#{title_element.key}")
+  end
+  
   Element.find(:all).each do |element|
     attr_accessor element.key.intern
   end
