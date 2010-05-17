@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   skip_before_filter :login_required, :except => [:destroy]
   
+  layout "login"
+  
   def root
     if logged_in?
       redirect_to(current_account.loginable.is_a?(Educatee) ? educatee_dashboard_path : educator_dashboard_path)

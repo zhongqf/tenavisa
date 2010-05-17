@@ -2,11 +2,13 @@
 
 %p= render 'display'
 
+%hr
 %p
   %strong Current State:
   = @profile.aasm_current_state.to_s
-  %br
-  %strong Actions:
+
+%hr
+%p
   = link_to 'Back', :back
   - if current_educatee
     - if @profile.aasm_events_for_current_state.include?(:submit)

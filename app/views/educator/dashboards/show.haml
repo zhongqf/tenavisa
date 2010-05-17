@@ -1,14 +1,18 @@
 %h1 Dashboard
-.box
-  to do something here
+.notice
+  %p
+    There are 6 profiles in editing.
   
-  - if @educator.operator?
+- if @educator.operator?
+  .notice
     %p
       %h4 Management
       %ul
         %li= link_to "Manage Educators", educator_educators_path
 
-%h2 Submitted Profiles
-= render 'educator/profiles/records', :profiles => @profiles
-      
+.header3 Recently Submitted Profiles
+%p
+  = render 'educator/profiles/records', :profiles => @profiles
+
+%hr
 = link_to 'All Profiles', educator_profiles_path

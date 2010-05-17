@@ -1,61 +1,79 @@
 !!!strict
 %head
   %meta{"http-equiv"=>"Content-Type", "content"=>"text/html; charset=utf-8"}
-  %title Tenavisa
+  %title Manabi
+  %meta{"http-equiv"=>"X-UA-Compatible", "content"=>"IE=EmulateIE7"}
+  
   = stylesheet_link_tag 'compiled/screen', :media => "screen, projection"
   = stylesheet_link_tag 'compiled/print', :media => "print"
   = stylesheet_link_tag 'compiled/style', :media => "screen, projection"
   /[if lt IE 8]
     = stylesheet_link_tag 'compiled/ie', :media => "screen, projection"
+  = stylesheet_link_tag 'public', :media => "screen, projection"
+  = stylesheet_link_tag 'layout', :media => "screen, projection"
+  = javascript_include_tag "jquery-1.3.2.min"
+  = javascript_include_tag "jquery.ifixpng"
 
-%body.bp.three-col
-  #container
-    #header
-      %h1
-        = link_to 'Tenavisa', '/'
-      #header_links
-        %div
-          = link_to 'Help', ''
+  :erb
+    <script>
+    $(function(){
+    	$(".png").ifixpng();
+    })
+    $(function(){
+    	$("input[type='text']").addClass('text');
+    	$("input[type='text']").focus(function(){
+    		$(this).css({"background":"#EEE"});
+    	})
+    	$("input[type='text']").blur(function(){
+    		$(this).css({"background":"#FFFFFF"});
+    	})
+
+    })
+    $(function(){
+    	$(".submenu li").hover(function(){
+    		$(this).css({"opacity":"0.6"});
+    	},function(){
+    		$(this).css({"opacity":"1"});
+    	})
+    })
+    $(function(){
+    	choose(".liuriChoose",".liuriCnt");
+    	choose(".quzhuChoose",".quzhuCnt");
+    	$(".liuriSelect").change(function(){
+    		choose(".liuriChoose",".liuriCnt");
+    	})
+    	$(".quzhuSelect").change(function(){
+    		choose(".quzhuChoose",".quzhuCnt");
+    	})
+    })
+    function choose(obj1,obj2){
+    	if($(obj1).attr("selected") == true){
+    		$(obj2).hide();
+    	}else{
+    		$(obj2).show();
+    	}
+    }
+    </script>
+    
+%body
+  .top
+    .container
+      .ad MANABI外语学院长野校、东京校、新宿校正在招生。
+      %div
+        - if logged_in?
+          = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, ''}"
           |
-          - if logged_in?
-            = link_to 'Logout', logout_path
-          - else
-            = link_to 'Login', login_path
-        %div
-          - if logged_in?
-            = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, ''}"
-      #header_navis
-        %ul
-          - if logged_in?
-            %li.current= link_to 'Dashboard', current_account.loginable.is_a?(Educatee) ? educatee_dashboard_path : educator_dashboard_path
-          - else
-            %li.current= link_to 'Login', login_path
-          %li=# link_to 'Accounts'
-          %li=# link_to 'Posts'
-          %li=# link_to 'Blogs'
-          %li=# link_to 'Settings'
-    #sidebar
-      #sidebar_wrap
-        %h3 Sidebar
-        %p
-          %strong Sample Users
-          %dt
-            Educatee
-          %dd
-            joe andy mary danny aaron jack
-          %dt
-            Educator
-          %dd
-            jeff ben lucas
-          %dt
-            Operator
-          %dd
-            james
-          %br
-          %small all password is 000000
-    #content
-      #content_wrap
-        = yield
-    #footer
-      #footer_wrap
-        Footer ---------------------
+          = link_to 'Logout', logout_path
+        - else
+          = link_to 'Login', login_path
+        |
+        = link_to "Help", ""
+  .container
+    .logo.png
+    .main
+      .sidebar
+        .wrap
+          = render :partial => "layouts/sidebar"
+      .mainbar
+        .blueprint
+          = yield

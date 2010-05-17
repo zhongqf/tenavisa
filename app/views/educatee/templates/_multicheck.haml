@@ -9,17 +9,18 @@
 - values = profile.send(:"#{element.key}")
 - values = {} if values.nil? || values.blank?
 
-%p
-  = form.label element.key, element.title_cn
-  = form.hidden_field element.key, :value => "multicheck"
-  = hidden_field_tag "#{element.key}_options_count", options.count.to_s
-  - options.each_index do |index|
-    - option = options[index]
-    - checked = values[option[:title]]
-    %br/
-    = hidden_field_tag "#{element.key}_option_title_#{index}", option[:title]
-    = check_box_tag "#{element.key}_option_#{index}", 1, checked
-    = label_tag option[:title]
-    - if option.has_key?(:additional) && option[:additional]
-      = text_field_tag "#{element.key}_additional_#{index}", checked ? checked.to_s : ""
+%tr
+  %td= form.label element.key, element.title_cn
+  %td
+    = form.hidden_field element.key, :value => "multicheck"
+    = hidden_field_tag "#{element.key}_options_count", options.count.to_s
+    - options.each_index do |index|
+      - option = options[index]
+      - checked = values[option[:title]]
+      = hidden_field_tag "#{element.key}_option_title_#{index}", option[:title]
+      = check_box_tag "#{element.key}_option_#{index}", 1, checked
+      = label_tag option[:title]
+      - if option.has_key?(:additional) && option[:additional]
+        = text_field_tag "#{element.key}_additional_#{index}", checked ? checked.to_s : ""
+      %br/
   

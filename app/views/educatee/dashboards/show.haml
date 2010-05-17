@@ -2,24 +2,27 @@
 
 
       
-.box
-  - if @profile.aasm_current_state == :denied
+- if @profile.aasm_current_state == :denied
+  .notice
     %p
       Your profile was denied.
+      %br
       %br
       %strong Reason:
       %br
       %quoto= @profile.deny_info.reason
       
-  %ul
-    - if [:new, :denied].include?(@profile.aasm_current_state)
-      - Page.all.each do |page|
-        %li
-          = "Edit your #{link_to page.title, edit_educatee_profile_path(:page => page)}"
-    - else
-      %li Your profile is in review. You can not edit your profile now.
-%p= link_to 'View my profile', educatee_profile_path
+- unless [:new, :denied].include?(@profile.aasm_current_state)
+  .notice
+    Your profile is in review. You can not edit your profile now.
+
+
+%br   
+.header3 Profile Status
+%p
+  = profile_message(@profile)
+
 %hr
-.msg
-  %strong= profile_message(@profile)
+%p= link_to 'View my profile', educatee_profile_path
+    
     

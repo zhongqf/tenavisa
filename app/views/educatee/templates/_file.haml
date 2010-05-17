@@ -21,12 +21,12 @@
 /
 - filepath = profile.send(:"#{element.key}")
 
-%p
-  = form.label element.key, element.title_cn
-  %br/
-  - if filepath.nil? || filepath.blank?
-    No file uploaded yet.
-  - else
-    = image_tag(profile.send(:"#{element.key}"), :size => "100x135")
-  %br/
-  = form.file_field element.key, options
+%tr
+  %td= form.label element.key, element.title_cn
+  %td
+    - if filepath.nil? || filepath.blank?
+      No file uploaded yet.
+    - else
+      = image_tag(profile.send(:"#{element.key}"), :size => "100x135")
+    %br/
+    = form.file_field element.key, options

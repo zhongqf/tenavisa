@@ -1,0 +1,13 @@
+- form_tag session_path do
+  .container
+    .logo= image_tag "logo.png"
+    %table
+      %tr
+        %td{:align => "right"}= label_tag :login
+        %td= text_field_tag "login", @login
+      %tr
+        %td{:align => "right"}= label_tag :password
+        %td= password_field_tag "password", nil
+      %tr
+        %td
+        %td{:align => "right"}= image_submit_tag("btn_login.png")

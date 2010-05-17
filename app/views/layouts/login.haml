@@ -1,0 +1,25 @@
+!!!strict
+%head
+  %meta{"http-equiv"=>"Content-Type", "content"=>"text/html; charset=utf-8"}
+  %title Manabi - Login
+  %meta{"http-equiv"=>"X-UA-Compatible", "content"=>"IE=EmulateIE7"}
+  
+  = stylesheet_link_tag 'compiled/screen', :media => "screen, projection"
+  = stylesheet_link_tag 'compiled/print', :media => "print"
+  = stylesheet_link_tag 'compiled/style', :media => "screen, projection"
+  /[if lt IE 8]
+    = stylesheet_link_tag 'compiled/ie', :media => "screen, projection"
+  = stylesheet_link_tag 'public', :media => "screen, projection"
+  = javascript_include_tag "jquery-1.3.2.min"
+  
+  :erb
+    <style>
+      body{background:#34495A;}
+      .container{border:8px solid #FFF; width:600px; height:300px; margin:120px auto 0 auto; background:#D5E3EE;}
+      .logo{margin:20px 30px; padding-bottom:20px; padding-left:20px; border-bottom:1px solid #EEE;}
+      table{margin:0px 0 0 130px;}
+      td{padding:3px;}
+      .text{height:20px; line-height:20px; border:1px solid #CCC;}
+    </style>  
+%body
+  = yield

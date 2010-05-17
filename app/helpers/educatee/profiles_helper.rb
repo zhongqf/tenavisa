@@ -19,11 +19,12 @@ module Educatee::ProfilesHelper
     
     returning(String.new) do |html|
       
-      html << content_tag(:h3,"Error message goes here.")
+      #html << content_tag(:h3,"Error message goes here.")
       
       elements.each do |element|
         html << make_element_form(element, form, profile)
       end
+      
 
     end.html_safe!
 

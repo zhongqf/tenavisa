@@ -1,0 +1,71 @@
+﻿/* 杂项 */
+body { background: #FFF; color: #333; font-size: 12px; font-family:arial,"宋体";}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, table, td, img, div, option { padding: 0; margin: 0; }
+ol,ul {list-style:none;}   
+h1, h2, h3, h4, h5, h6 { font-size: 12px; }  
+h3{ display:block; position:absolute;} 
+table { border-collapse: collapse; border-spacing: 0; }
+ul li { list-style: none; }
+p{ padding:0; margin:10px 0;}
+hr { margin: 0; padding: 0; color: #CCC; }
+.block { display: block; }
+.clear { clear: both; height:0; font-size:0; line-height:0;  overflow:hidden; }
+.border { border: 1px solid #CCC; }
+.container{width:950px; margin:0px auto;}
+.left{ float:left;}
+.right{ float:right;}
+.pointer{ cursor:pointer;}
+.mb{ margin-bottom:10px;}
+.mt{ margin-top:10px;}
+.ml{ margin-left:10px;}
+.mr{ margin-right:10px;}
+.mt20{ margin-top:20px;}
+
+.mask{background:#CCC; position:absolute; display:none; left:0; top:0;}
+.pop{width:700px; height:400px; border:8px solid #34495A; display:none; position:absolute; background:#FFF;}
+.pop .hd{background:#34495A; color:#FFF; padding:2px 5px 6px 5px; height:12px;}
+.pop .hd span{display:block; font-weight:bold; position:absolute;}
+.pop .hd div{text-align:right;}
+.pop .cnt{padding:20px;}
+
+/* 字体样式 */
+.fontNormal { font-weight: normal; }
+.fontBold { font-weight: bold; }
+.font14 { font-size: 14px; }
+.font14B { font-size: 14px; font-weight: bold; }
+.font16 { font-size: 16px; }
+.font16B { font-size: 16px; font-weight: bold; }
+.font22B { font-size: 22px; font-weight: bold; }
+.fontWhite { color: #FFF; }
+.fontBlack { color: #000; }
+.fontRed { color: #FF0000; }
+.fontRed2{ color:#CC0000;}
+.fontBlue { color: #0000FF; }
+.fontBlue2 { color: #075AAD; }
+.fontBlue3{ color:#0099FF;}
+.fontGreen { color: #008000; }
+.fontOrange { color: #FF4400; }
+.fontYellow { color: Yellow; }
+.fontPink{ color:#FF0066;}
+.fontGray { color: Gray; }
+.font666 { color: #666; }
+.font999 { color: #999; }
+
+/* 超链接样式 */
+a img { border: 0px; }
+a:link, a:visited { color: #333; text-decoration:none; font-family:Arial,宋体; }
+a:hover{ color:#EB5D2B; text-decoration:underline;}
+.fontWhite a:link,.fontWhite a:visited,.fontWhite a:hover{ color:#FFF;}
+.fontBlack a:link,.fontBlack a:visited,.fontBlack a:hover{ color:#000;}
+.fontRed a:link,.fontRed a:visited,.fontRed a:hover{ color:#FF0000; }
+.fontRed2 a:link,.fontRed2 a:visited,.fontRed2 a:hover{ color:#CC0000;}
+.fontBlue a:link,.fontBlue a:visited,.fontBlue a:hover{ color:#0000FF;}
+.fontBlue2 a:link,.fontBlue2 a:visited,.fontBlue2 a:hover{ color:#075AAD;}
+.fontBlue3 a:link,.fontBlue3 a:visited,.fontBlue3 a:hover{ color:#0099FF;}
+.fontGreen a:link,.fontGreen a:visited,.fontGreen a:hover{ color:#008000; }
+.fontOrange a:link,.fontOrange a:visited,.fontOrange a:hover{ color:#FF4400; }
+.fontGray a:link,.fontGray a:visited,.fontGray a:hover{ color:Gray;}
+.fontYellow a:link,.fontYellow a:visited,.fontYellow a:hover{ color:Yellow; }
+.font666 a:link,.font666 a:visited,.font666 a:hover{ color:#666; }
+.font999 a:link,.font999 a:visited,.font999 a:hover{ color:#999;}
+.fontPink a:link ,.fontPink a:visited,.fontPink a:hover{ color:#FF0066;}

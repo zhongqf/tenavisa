@@ -1,0 +1,24 @@
+.top{background:#f7f7f7; height:25px; line-height:25px; border-bottom:1px solid #CCC;}
+.top .container { text-align: right;}
+.top .ad { text-align: left; float: left; width: 400px;}
+.logo{margin:20px 30px; width:339px; height:68px; background:url(../images/logo.png);}
+.copyright{text-align:center; margin:20px 0;}
+.main{border-top:2px solid #6f777a; border-bottom:2px solid #6f777a; width:950px;}
+.sidebar{width:200px; float:left;}
+.sidebar .wrap{position:absolute;}
+.mainbar{width:748px; float:left; border-left:2px solid #6f777a; min-height:500px; margin-left:200px; *margin-left:0; _margin-left:0;}
+.menu{ margin-top:1px;}
+.view{height:30px; width:180px; line-height:30px; padding-left:20px; background:#208BBF; margin-top:5px; color:#FFF; font-weight:bold;}
+.menu li{height:30px; line-height:30px; margin-bottom:1px; padding-left:20px; background:#cccccc; width:180px; cursor:default;}
+.submenu { padding-left: 0; margin-left: 0;}
+.submenu li{background:#eeeeee; padding-left: 40px; width:160px; line-height:25px;height:25px; cursor:pointer;}
+.submenu li{*padding-left: 40px; *width:140px;}
+.menu .current{background:#6f777a; color:#FFF;}
+.mainbar .directHd, h1, h2, h3, h4 {margin-bottom:30px; padding-bottom:10px; border-bottom:1px solid #DDD; font-size:16px; font-weight:bold;}
+.formInfo{margin:0 0 20px 80px;}
+.formInfo td{padding:5px; vertical-align: top; border-bottom: none;}
+.formInfo td.buttons{border-bottom: none;}
+.formInfo .text{height:22px; border:1px solid #CCC; width:200px; line-height:22px;}
+.formInfo .file{ border:1px solid #CCC; height:22px; width:275px;}
+select{border:1px solid #CCC;}
+

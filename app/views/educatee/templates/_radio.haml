@@ -3,10 +3,11 @@
 
 - values = values.invert if values.kind_of?(Hash)
 
-%p
-  = form.label element.key, element.title_cn
-  - values.each do |value|
-    %br/
-    = form.radio_button(element.key, value)
-    = value
+%tr
+  %td= form.label element.key, element.title_cn
+  %td
+    - values.each do |value|
+      = form.radio_button(element.key, value)
+      = value
+      %br/
     

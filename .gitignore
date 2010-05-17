@@ -7,10 +7,11 @@ db/*.sqlite3
 .tmp*
 *.ttf
 *.*~
-tmp
+tmp/**/*
 vendor/gems
 vendor/rails
 public/system
 public/upload
 public/stylesheets/compiled
 .DS_Store
+*.esproj

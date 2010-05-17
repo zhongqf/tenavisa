@@ -4,7 +4,6 @@
 
 - values = values.invert if values.kind_of?(Hash)
 
-%p
-  = form.label element.key, element.title_cn
-  %br/
-  = form.select element.key, values
+%tr
+  %td= form.label element.key, element.title_cn
+  %td= form.select element.key, values

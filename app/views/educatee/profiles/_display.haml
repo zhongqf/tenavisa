@@ -1,15 +1,16 @@
 - Page.all.each do |page|
-  %h2= page.title
-  
-  %ul
-  - page.elements.each do |element|
-    %li
-      %strong= element.title_cn
-      = ":"
-      - if element.kind == "file"
-        - if @profile.send(element.key)
-          = image_tag(@profile.send(element.key), :size => "100x135")
-        - else
-          No file uploaded yet.
-      - else
-        = @profile.send(element.key)
+  .header3= page.title
+  %p
+    %table.formInfo
+      - page.elements.each do |element|
+        %tr
+          %td
+            %strong= element.title_cn
+          %td
+            - if element.kind == "file"
+              - if @profile.send(element.key)
+                = image_tag(@profile.send(element.key), :size => "100x135")
+              - else
+                No file uploaded yet.
+            - else
+              = @profile.send(element.key)
