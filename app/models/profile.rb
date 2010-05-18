@@ -42,8 +42,11 @@ class Profile < ActiveRecord::Base
   
   def title
     title_element = Element.find_by_is_title(true)
-    return "No title element defined" if title_element.nil?
-    return self.send(:"#{title_element.key}")
+    return "(No title element defined)" if title_element.nil?
+    
+    title = self.send(:"#{title_element.key}") 
+    
+    (title.nil? || title.blank?) ? "(No title)" : title
   end
   
   Element.find(:all).each do |element|

@@ -18,7 +18,7 @@
 .formInfo{margin:0 0 20px 80px;}
 .formInfo td{padding:5px; vertical-align: top; border-bottom: none; line-height: 22px;}
 .formInfo td.buttons{border-bottom: none;}
-.formInfo .text{height:22px; border:1px solid #CCC; width:200px; line-height:22px;}
+.formInfo .text{height:22px; border:1px solid #CCC; width:200px;}
 .formInfo .file{ border:1px solid #CCC; height:22px; width:275px;}
 select{border:1px solid #CCC;}
 
