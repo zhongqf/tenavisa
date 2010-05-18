@@ -13,7 +13,7 @@ class Educator::DeniesController < ApplicationController
 
   def create
     @profile = Profile.find(params[:profile_id])
-    @deny = @profile.build_deny(params[:deny].merge(:educator => current_educator))
+    @deny = @profile.build_deny_info(params[:deny].merge(:educator => current_educator))
   
     Profile.transaction do 
       if @deny.save && @profile.deny!
