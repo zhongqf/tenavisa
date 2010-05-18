@@ -19,7 +19,7 @@
       - checked = values[option[:title]]
       = hidden_field_tag "#{element.key}_option_title_#{index}", option[:title]
       = check_box_tag "#{element.key}_option_#{index}", 1, checked
-      = label_tag option[:title]
+      = option[:title]
       - if option.has_key?(:additional) && option[:additional]
         = text_field_tag "#{element.key}_additional_#{index}", checked ? checked.to_s : ""
       %br/

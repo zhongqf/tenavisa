@@ -1,5 +1,5 @@
-﻿/* 杂项 */
-body { background: #FFF; color: #333; font-size: 12px; font-family:arial,"宋体";}
+/* 杂项 */
+body { background: #FFF; color: #333; font-size: 12px; font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;}
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, table, td, img, div, option { padding: 0; margin: 0; }
 ol,ul {list-style:none;}   
 h1, h2, h3, h4, h5, h6 { font-size: 12px; }  
@@ -53,7 +53,7 @@ hr { margin: 0; padding: 0; color: #CCC; }
 
 /* 超链接样式 */
 a img { border: 0px; }
-a:link, a:visited { color: #333; text-decoration:none; font-family:Arial,宋体; }
+a:link, a:visited { color: #333; text-decoration:none; /*font-family:Arial,宋体; */}
 a:hover{ color:#EB5D2B; text-decoration:underline;}
 .fontWhite a:link,.fontWhite a:visited,.fontWhite a:hover{ color:#FFF;}
 .fontBlack a:link,.fontBlack a:visited,.fontBlack a:hover{ color:#000;}

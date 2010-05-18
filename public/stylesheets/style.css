@@ -1,0 +1,77 @@
+/* line 5, ../../app/stylesheets/style.sass */
+body {
+  background-color: #f3f3f3;
+  background-image: url(/images/styles/background.png);
+  background-position: top left;
+  background-repeat: repeat-x;
+}
+
+/* line 11, ../../app/stylesheets/style.sass */
+#content_wrap, #sidebar_wrap, #footer_wrap {
+  margin-top: 5px;
+  background-color: white;
+  border: 1px solid #cccccc;
+  padding: 10px;
+}
+
+/* line 17, ../../app/stylesheets/style.sass */
+#header {
+  height: 70px;
+}
+/* line 19, ../../app/stylesheets/style.sass */
+#header #header_links {
+  font-size: 90%;
+  padding: 5px 0px;
+  float: right;
+  text-align: right;
+  color: #aaaaaa;
+}
+/* line 22, ../../app/stylesheets/style.sass */
+#header #header_links div {
+  height: 15px;
+  line-height: 15px;
+}
+/* line 28, ../../app/stylesheets/style.sass */
+#header #header_links a {
+  text-decoration: none;
+  color: white;
+}
+/* line 32, ../../app/stylesheets/style.sass */
+#header #header_navis {
+  padding-left: 1px;
+  clear: both;
+  padding-top: 5px;
+  height: 25px;
+}
+/* line 37, ../../app/stylesheets/style.sass */
+#header #header_navis ul {
+  position: relative;
+  list-style: none;
+  margin: 0;
+}
+/* line 41, ../../app/stylesheets/style.sass */
+#header #header_navis li {
+  float: left;
+  margin-right: 3px;
+  background-color: #e48743;
+}
+/* line 46, ../../app/stylesheets/style.sass */
+#header #header_navis li a {
+  line-height: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333333;
+  padding: 0px 10px;
+}
+/* line 52, ../../app/stylesheets/style.sass */
+#header #header_navis li.current {
+  background-color: #f3f3f3;
+}
+/* line 56, ../../app/stylesheets/style.sass */
+#header h1 {
+  float: right;
+}
+/* line 58, ../../app/stylesheets/style.sass */
+#header h1 a {
+  display: none;
+}

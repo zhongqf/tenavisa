@@ -9,7 +9,7 @@
 
 %hr
 %p
-  = link_to 'Back', :back
+  = link_to 'Back', :back, :class => "button"
   - if current_educatee
     - if @profile.aasm_events_for_current_state.include?(:submit)
       = link_to 'Submit', '', :class => "button"

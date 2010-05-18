@@ -18,9 +18,9 @@ module Educator::ProfilesHelper
       @profile.aasm_events_for_current_state.each do |event|
         case event
         when :accept
-          html << link_to('Accept', accept_educator_profile_path(@profile), :method => :post)
+          html << link_to('Accept', accept_educator_profile_path(@profile), :method => :post, :class => "button")
         when :deny
-          html << link_to('Deny', educator_profile_deny_path(@profile))
+          html << link_to('Deny', educator_profile_deny_path(@profile), :class => "button")
         end
       end
     end

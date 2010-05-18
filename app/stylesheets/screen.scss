@@ -1,0 +1,61 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import "blueprint/reset";
+
+// To configure blueprint, edit the partials/base.sass file.
+@import "partials/base";
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint";
+
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding";
+
+@import "blueprint/buttons";
+
+// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
+// +blueprint
+
+//Recommended Blueprint configuration with scoping and semantic layout:
+@include blueprint-scaffolding(".blueprint");
+
+.blueprint {
+  //@include blueprint-typography(true);
+  @include blueprint-utilities;
+  //@include blueprint-debug;
+  @include blueprint-interaction;
+
+  // Remove the scaffolding when you're ready to start doing visual design.
+  // Or leave it in if you're happy with how blueprint looks out-of-the-box
+  
+  margin: 30px;
+
+  .header3 {
+    font-size: 14px;
+    margin-bottom: 14px;
+    font-weight: bold;
+  }
+  
+  .button {
+    @include anchor-button;
+    @include button-colors;
+    @include button-active-colors;
+    @include button-hover-colors;
+  }
+  
+}
+
+.blueprint form {
+  @include blueprint-form; 
+  
+  input.text, input.title, input[type=text], input[type=password], textarea, select {
+    margin: 0;
+    padding: 0;  
+  }
+  
+  input.commit, input[type=commit] {
+    @include button-button;
+    @include button-colors;
+    @include button-active-colors;
+    @include button-hover-colors;
+  }
+}
