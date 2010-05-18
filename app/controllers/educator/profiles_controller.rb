@@ -20,7 +20,7 @@ class Educator::ProfilesController < ApplicationController
         pdf = Prawn::Document.new(:template => template)
         
         font_zh = File.join(RAILS_ROOT, "simhei.ttf")
-        font_ja = File.join(RAILS_ROOT, "ipam.ttf")
+        font_ja = File.join(RAILS_ROOT, "ipag.ttf")
         
         Element.all.each do |element|
           script = element.prawn_output_script
