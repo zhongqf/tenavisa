@@ -10,35 +10,53 @@ class Profile < ActiveRecord::Base
   
   aasm_column :status
   aasm_initial_state :new
+  
   aasm_state :new
-  aasm_state :submitted
-  aasm_state :accepted
-  aasm_state :denied
+  aasm_state :editing
+  #aasm_state :submitted
+  aasm_state :frozen
+  aasm_state :archived
   
-  aasm_event :submit do
-    transitions :to => :submitted, :from => [:new, :editing], :guard => :profile_check 
+  #aasm_state :accepted
+  #aasm_state :denied
+  
+  aasm_event :start_edit do
+    transitions :to => :editing, :from => [:new]
+  end
+
+  #aasm_event :submit do
+  #  transitions :to => :submitted, :from => [:new, :editing], :guard => :profile_check 
+  #end
+  
+  aasm_event :freeze do
+    transitions :to => :frozen, :from => [:new, :editing]
   end
   
-  aasm_event :accept do
-    transitions :to => :accepted, :from => [:submitted]
+  aasm_event :unfreeze do
+    transitions :to => :editing, :from => [:frozen]
   end
   
-  aasm_event :deny do
-    transitions :to => :denied, :from => [:submitted]
+  aasm_event :archive do
+    transitions :to => :archived, :from => [:frozen]
   end
+  
+  
+  #aasm_event :accept do
+  #  transitions :to => :accepted, :from => [:submitted]
+  #end
+  
+  #aasm_event :deny do
+  #  transitions :to => :denied, :from => [:submitted]
+  #end
   
   def can_edit_by_educatee
     [:new, :denied].include?(self.aasm_current_state)
   end
 
   def can_edit_by_educator
-    [:submitted].include?(self.aasm_current_state)
-  end
-  
-  def profile_check
+    #[:new, :editing, :frozen ].include?(self.aasm_current_state)
     true
   end
-  
   
   def title
     title_element = Element.find_by_is_title(true)
@@ -48,6 +66,27 @@ class Profile < ActiveRecord::Base
     
     (title.nil? || title.blank?) ? "(No title)" : title
   end
+  
+  
+  attr_accessor :current_page_id
+  
+  def validate_on_update
+    return if current_page_id.nil? or current_page_id.blank?
+    @page = Page.find(current_page_id)
+    return if @page.nil?
+    
+    @page.elements.each do |element|
+      value = self.send(element.key)
+      profile = self
+      script = element.validation_script
+      errors = self.errors
+      
+      eval(script) if script && profile
+    end
+  end
+  
+  
+  
   
   Element.find(:all).each do |element|
     attr_accessor element.key.intern

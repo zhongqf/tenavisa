@@ -1,11 +1,12 @@
 %h1= "Profile for #{@profile.title}"
 %p= profile_message_for_educator(@profile)
 
-= render 'educatee/profiles/display'
+= render 'educatee/profiles/display_tabbed'
 
 
 - if current_educator
-  = profile_avoid_actions(@profile).join(" ")
+  = profile_valid_actions(@profile).join(" ")
 
 = link_to 'Generate Application in PDF', formatted_educator_profile_path(@profile, :pdf), :class => "button"
+= link_to 'Back to Profile list', educator_profiles_path(), :class => "button"
     

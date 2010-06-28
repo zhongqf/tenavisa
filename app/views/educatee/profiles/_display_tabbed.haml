@@ -1,0 +1,27 @@
+:javascript
+  $(function(){
+    $("ul.tabs").tabs("div.tab_panes > div.tab_pane");
+  });
+
+%ul.tabs
+  - Page.all.each do |page|
+    %li= link_to page.title, "#page_#{page.id}"
+
+.tab_panes
+  - Page.all.each do |page|
+    .tab_pane
+      = link_to 'Edit', edit_educator_profile_path(@profile, :page => page), :class => "button right"
+      %table.formInfo
+        - page.elements.each do |element|
+          %tr
+            %td
+              %strong= element.title_cn
+            %td
+              - if element.kind == "file"
+                - if @profile.send(element.key)
+                  = image_tag(@profile.send(element.key), :size => "100x135")
+                - else
+                  No file uploaded yet.
+              - else
+                = @profile.send(element.key)
+    

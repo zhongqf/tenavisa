@@ -1,43 +1,17 @@
 require 'prawn/core'
 Mime::Type.register 'application/pdf', :pdf
 
-class Educator::ProfilesController < ApplicationController
-  before_filter :educator_required
+class Educator::ProfilesController < Educatee::ProfilesController
   
+
+  
+    
   def index
     @profiles = Profile.all
   end
   
-  def show
-    @profile = Profile.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        
-        template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
-
-        pdf = Prawn::Document.new(:template => template)
-        
-        font_zh = File.join(RAILS_ROOT, "simhei.ttf")
-        font_ja = File.join(RAILS_ROOT, "ipag.ttf")
-        
-        Element.all.each do |element|
-          script = element.prawn_output_script
-          value = @profile.send(element.key)
-          eval(script) if script && value
-        end
-
-        send_data pdf.render
-
-      end
-    end
-
-  end
-
   def edit
     begin
-      @profile = Profile.find(params[:id])      
       @page = Page.find(params[:page])
       @submit_path = educator_profile_path(@profile)
       @elements = @page.elements
@@ -46,40 +20,31 @@ class Educator::ProfilesController < ApplicationController
     end
   end
 
-  def print
-    @profile = Profile.find(params[:id])
-    
-    template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
-    outputfile = "profile_#{@profile.id}"
-    
-    pdf = Prawn::Document.new(:template => template)
-    pdf.fill_color "ff0000"
-    pdf.text "Baby, comes to me"
-    pdf.render_file outputfile
-    send_data pdf.render
-  end
+  def update    
+    @page = Page.find(params[:page_id])
+    @submit_path = educatee_profile_path
+    @elements = @page.elements
 
-  def update
-  end
+    safe = multi_check_safe(params[:profile], params)
+    safe = multi_attribute_as_date(safe)
+    safe.merge!(:current_page_id => @page.id)
   
-  def accept
-    @profile = Profile.find(params[:id])
-    if @profile.accept && @profile.save
-      flash[:notice] = "The profile was acceptd."
+    if @profile.update_attributes(safe)
+      flash[:notice] = "Profile updated."
+      redirect_to educator_profile_path(@profile) + "#page_#{@page.id}"
     else
-      flash[:error] = "Can not accept this profile."
+      flash[:errors] = "There are errors."
+      render :action => "edit"
     end
-    redirect_to :back
+    
   end
   
-  def deny
-    @profile = Profile.find(params[:id])
-    if @profile.deny && @profile.save
-      flash[:notice] = "The profile was denied."
-    else
-      flash[:error] = "Can not deny this profile."
+  protected
+    def role_required
+      educator_required
     end
-    redirect_to :back
-  end
-  
+    
+    def find_profile
+      @profile = Profile.find(params[:id])
+    end 
 end

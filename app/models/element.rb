@@ -1,6 +1,8 @@
 class Element < ActiveRecord::Base
   belongs_to :page
   
+  has_many :valeurs, :dependent => :destroy
+  
   validates_uniqueness_of :key
   validates_presence_of :key
   
@@ -10,4 +12,8 @@ class Element < ActiveRecord::Base
   
   
   named_scope :display_columns, { :conditions => ["display_index > 0 or is_title = ?", true], :order => "is_title desc, display_index" }
+  
+  def typus_name
+    self.key
+  end
 end

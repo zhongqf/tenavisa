@@ -1,14 +1,39 @@
-class Educatee::ProfilesController < ApplicationController
-  before_filter :educatee_required
+require 'prawn/core'
+Mime::Type.register 'application/pdf', :pdf
 
+class Educatee::ProfilesController < ApplicationController
+  before_filter :role_required
+  before_filter :find_profile, :except => [:index] 
+
+  def index
+  end
+  
   def show
-    @profile = current_educatee.profile
+    respond_to do |format|
+      format.html
+      format.pdf do
+        
+        template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
+
+        pdf = Prawn::Document.new(:template => template)
+        
+        font_zh = File.join(RAILS_ROOT, "simhei.ttf")
+        font_ja = File.join(RAILS_ROOT, "ipag.ttf")
+        
+        Element.all.each do |element|
+          script = element.prawn_output_script
+          value = @profile.send(element.key)
+          eval(script) if script && value
+        end
+
+        send_data pdf.render
+
+      end
+    end
   end
 
   def edit
-    begin
-      @profile = current_educatee.profile
-      
+    begin      
       @page = Page.find(params[:page])
       @submit_path = educatee_profile_path
       @elements = @page.elements
@@ -18,7 +43,6 @@ class Educatee::ProfilesController < ApplicationController
   end
   
   def submit
-    @profile = current_educatee.profile
     if @profile.submit && @profile.save
       flash[:notice] = "Your profile was submitted. We will confirm it."
     else
@@ -29,24 +53,65 @@ class Educatee::ProfilesController < ApplicationController
       
 
   def update    
-    @profile = current_educatee.profile
-    
+    @page = Page.find(params[:page_id])
+    @submit_path = educatee_profile_path
+    @elements = @page.elements
+
     safe = multi_check_safe(params[:profile], params)
     safe = multi_attribute_as_date(safe)
-  
+    safe.merge!(:current_page_id => @page.id)
   
     if @profile.update_attributes(safe)
       flash[:notice] = "Profile updated."
       redirect_to educatee_dashboard_path
     else
-      logger.debug @profile.errors.inspect
+      flash[:errors] = "There are errors."
+      render :action => "edit"
     end
-  end
-
-  def print
+    
   end
   
-  private
+  
+  def freeze
+    if @profile.freeze && @profile.save
+      flash[:notice] = "This Profile was frozen. The educatee can not edit this profile any more."
+    else
+      flash[:error] = "We can not freeze this profile."
+    end
+    
+    redirect_to :back
+  end
+  
+  def unfreeze
+    if @profile.unfreeze && @profile.save
+      flash[:notice] = "This Profile was unfrozen. The educatee can edit this profile now."
+    else
+      flash[:error] = "We can not unfreeze this profile."
+    end
+    
+    redirect_to :back
+  end
+  
+  
+  def archive
+    if @profile.archive && @profile.save
+      flash[:notice] = "This Profile was archived."
+    else
+      flash[:error] = "We can not archive this profile."
+    end
+    
+    redirect_to :back
+  end
+
+  protected
+  
+    def role_required
+      educatee_required
+    end
+  
+    def find_profile
+      @profile = current_educatee.profile
+    end
   
     def multi_check_safe(profile, params)
       safe = {}

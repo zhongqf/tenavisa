@@ -11,40 +11,57 @@
     = stylesheet_link_tag 'ie', :media => "screen, projection"
   = stylesheet_link_tag 'public', :media => "screen, projection"
   = stylesheet_link_tag 'layout', :media => "screen, projection"
-  = javascript_include_tag "jquery-1.3.2.min"
+  = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  = javascript_include_tag "http://cdn.jquerytools.org/1.2.2/all/jquery.tools.min.js"  
   = javascript_include_tag "jquery.ifixpng"
 
   :erb
     <script>
+
     $(function(){
     	$(".png").ifixpng();
-    })
-    $(function(){
+
     	$("input[type='text']").addClass('text');
+
     	$("input[type='text']").focus(function(){
     		$(this).css({"background":"#EEE"});
-    	})
+    	});
+
     	$("input[type='text']").blur(function(){
     		$(this).css({"background":"#FFFFFF"});
-    	})
+    	});
 
-    })
-    $(function(){
     	$(".submenu li").hover(function(){
     		$(this).css({"opacity":"0.6"});
     	},function(){
     		$(this).css({"opacity":"1"});
     	})
-    })
-    $(function(){
+
     	choose(".liuriChoose",".liuriCnt");
     	choose(".quzhuChoose",".quzhuCnt");
     	$(".liuriSelect").change(function(){
     		choose(".liuriChoose",".liuriCnt");
-    	})
+    	});
     	$(".quzhuSelect").change(function(){
     		choose(".quzhuChoose",".quzhuCnt");
-    	})
+    	});
+    	
+      // select all desired input fields and attach tooltips to them
+      $("#edit_profile :input").tooltip({
+
+      	// place tooltip on the right edge
+      	position: "center right",
+
+      	// a little tweaking of the position
+      	offset: [-2, 10],
+
+      	// use the built-in fadeIn/fadeOut effect
+      	effect: "fade",
+
+      	// custom opacity setting
+      	opacity: 0.7
+
+      });
     })
     function choose(obj1,obj2){
     	if($(obj1).attr("selected") == true){
@@ -61,7 +78,7 @@
       .ad MANABI外语学院长野校、东京校、新宿校正在招生。
       %div
         - if logged_in?
-          = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, ''}"
+          = "Logged as #{current_account.loginable.class}: #{link_to current_account.email, root_path}"
           |
           = link_to 'Logout', logout_path
         - else

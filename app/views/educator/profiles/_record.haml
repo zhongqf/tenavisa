@@ -1,8 +1,11 @@
 %tr
   - Element.display_columns.each do |column|
     %td
-      - if column.is_title
-        = link_to profile.title, educator_profile_path(profile)
-      - else
-        = profile.send(:"#{column.key}")
+      / - if column.is_title
+      /   = link_to profile.title, educator_profile_path(profile)
+      / - else
+      /   = profile.send(:"#{column.key}")
+      = profile.send(:"#{column.key}")
   %td= profile.status
+  %td= link_to "View", educator_profile_path(profile)
+  %td= link_to "Edit", edit_educator_profile_path(profile)
