@@ -4,6 +4,8 @@ Mime::Type.register 'application/pdf', :pdf
 class Educatee::ProfilesController < ApplicationController
   before_filter :role_required
   before_filter :find_profile, :except => [:index] 
+  
+  helper_method :edit_profile_path
 
   def index
   end
@@ -101,6 +103,10 @@ class Educatee::ProfilesController < ApplicationController
     end
     
     redirect_to :back
+  end
+  
+  def edit_profile_path(profile, options = {})
+    edit_educatee_profile_path(profile, options)
   end
 
   protected

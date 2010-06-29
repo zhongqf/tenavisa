@@ -2,6 +2,6 @@
   %td= form.label element.key, element.title_cn
   %td
     =# form.date_select element.key, {:start_year => 1900}.merge(options).merge(:title => element.description)
-    = form.text_field element.key
+    = form.text_field element.key, :class => "jquerytools_dateinput"
 :javascript
-  $("#profile_#{element.key}").dateinput({ format: 'yyyy-mm-dd' });
+  / $("#profile_#{element.key}").dateinput({ offset: [0, 0], format: 'yyyy-mm-dd', selectors: true });

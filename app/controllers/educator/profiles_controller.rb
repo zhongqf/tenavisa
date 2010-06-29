@@ -4,6 +4,7 @@ Mime::Type.register 'application/pdf', :pdf
 class Educator::ProfilesController < Educatee::ProfilesController
   
 
+  helper_method :edit_profile_path
   
     
   def index
@@ -22,7 +23,7 @@ class Educator::ProfilesController < Educatee::ProfilesController
 
   def update    
     @page = Page.find(params[:page_id])
-    @submit_path = educatee_profile_path
+    @submit_path = educator_profile_path
     @elements = @page.elements
 
     safe = multi_check_safe(params[:profile], params)
@@ -39,6 +40,11 @@ class Educator::ProfilesController < Educatee::ProfilesController
     
   end
   
+  def edit_profile_path(profile, options = {})
+    edit_educator_profile_path(profile, options)
+  end
+  
+    
   protected
     def role_required
       educator_required

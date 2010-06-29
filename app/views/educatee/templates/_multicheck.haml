@@ -21,6 +21,6 @@
       = check_box_tag "#{element.key}_option_#{index}", 1, checked, :title => element.description
       = option[:title]
       - if option.has_key?(:additional) && option[:additional]
-        = text_field_tag "#{element.key}_additional_#{index}", checked ? checked.to_s : "", :title => elment.description
+        = text_field_tag "#{element.key}_additional_#{index}", checked ? checked.to_s : "", :title => element.description
       %br/
   

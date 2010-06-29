@@ -10,13 +10,13 @@
 .tab_panes
   - Page.all.each do |page|
     .tab_pane
-      = link_to 'Edit', edit_educator_profile_path(@profile, :page => page), :class => "button right"
+      = link_to 'Edit', edit_profile_path(@profile, :page => page), :class => "button right"
       %table.formInfo
         - page.elements.each do |element|
           %tr
-            %td
+            %td{:style=>"min-width: 100px;"}
               %strong= element.title_cn
-            %td
+            %td{:style=>"word-break:break-all"}
               - if element.kind == "file"
                 - if @profile.send(element.key)
                   = image_tag(@profile.send(element.key), :size => "100x135")

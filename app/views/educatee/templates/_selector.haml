@@ -3,6 +3,7 @@
 
 
 - values = values.invert if values.kind_of?(Hash)
+- options ||= {}
 
 %tr
   %td= form.label element.key, element.title_cn

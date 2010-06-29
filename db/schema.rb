@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100515064708) do
+ActiveRecord::Schema.define(:version => 20100629153524) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20100515064708) do
     t.text     "prawn_output_script"
     t.boolean  "is_title"
     t.integer  "display_index"
+    t.float    "weight",              :default => 0.0
   end
 
   create_table "pages", :force => true do |t|
