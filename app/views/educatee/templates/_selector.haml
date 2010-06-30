@@ -3,7 +3,8 @@
 
 
 - values = values.invert if values.kind_of?(Hash)
+- options ||= {}
 
 %tr
   %td= form.label element.key, element.title_cn
-  %td= form.select element.key, values
+  %td= form.select element.key, values, options.merge!(:title => element.description)

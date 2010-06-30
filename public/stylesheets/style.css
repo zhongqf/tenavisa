@@ -1,77 +1,242 @@
-/* line 5, ../../app/stylesheets/style.sass */
-body {
-  background-color: #f3f3f3;
-  background-image: url(/images/styles/background.png);
-  background-position: top left;
-  background-repeat: repeat-x;
-}
-
-/* line 11, ../../app/stylesheets/style.sass */
-#content_wrap, #sidebar_wrap, #footer_wrap {
-  margin-top: 5px;
-  background-color: white;
-  border: 1px solid #cccccc;
-  padding: 10px;
-}
-
-/* line 17, ../../app/stylesheets/style.sass */
-#header {
-  height: 70px;
-}
-/* line 19, ../../app/stylesheets/style.sass */
-#header #header_links {
-  font-size: 90%;
-  padding: 5px 0px;
-  float: right;
-  text-align: right;
-  color: #aaaaaa;
-}
-/* line 22, ../../app/stylesheets/style.sass */
-#header #header_links div {
-  height: 15px;
-  line-height: 15px;
-}
-/* line 28, ../../app/stylesheets/style.sass */
-#header #header_links a {
-  text-decoration: none;
-  color: white;
-}
-/* line 32, ../../app/stylesheets/style.sass */
-#header #header_navis {
-  padding-left: 1px;
-  clear: both;
-  padding-top: 5px;
-  height: 25px;
-}
-/* line 37, ../../app/stylesheets/style.sass */
-#header #header_navis ul {
-  position: relative;
+/* line 3, ../../app/stylesheets/style.scss */
+ul.tabs {
   list-style: none;
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 0 0 10px;
+  height: 26px;
+  border-bottom: 1px solid #666;
 }
-/* line 41, ../../app/stylesheets/style.sass */
-#header #header_navis li {
+/* line 10, ../../app/stylesheets/style.scss */
+ul.tabs li {
   float: left;
-  margin-right: 3px;
-  background-color: #e48743;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
-/* line 46, ../../app/stylesheets/style.sass */
-#header #header_navis li a {
-  line-height: 25px;
-  font-weight: bold;
+/* line 17, ../../app/stylesheets/style.scss */
+ul.tabs a {
+  float: left;
+  font-size: 1em;
+  display: block;
+  padding: 3px 10px;
   text-decoration: none;
-  color: #333333;
-  padding: 0px 10px;
+  border: 1px solid #666;
+  border-bottom: 0px;
+  height: 18px;
+  background-color: #efefef;
+  color: #777;
+  margin-right: 2px;
+  position: relative;
+  top: 1px;
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  -o-border-top-left-radius: 2px;
+  -ms-border-top-left-radius: 2px;
+  -khtml-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  -o-border-top-right-radius: 2px;
+  -ms-border-top-right-radius: 2px;
+  -khtml-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
 }
-/* line 52, ../../app/stylesheets/style.sass */
-#header #header_navis li.current {
-  background-color: #f3f3f3;
+/* line 37, ../../app/stylesheets/style.scss */
+ul.tabs a:hover {
+  background-color: #F7F7F7;
+  color: #333;
 }
-/* line 56, ../../app/stylesheets/style.sass */
-#header h1 {
+/* line 42, ../../app/stylesheets/style.scss */
+ul.tabs a.current {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+  color: #000;
+  cursor: default;
+  font-weight: bold;
+}
+
+/* line 52, ../../app/stylesheets/style.scss */
+.tab_panes .tab_pane {
+  display: none;
+  border: none;
+  min-height: 150px;
+  padding: 15px 20px;
+  background-color: #fff;
+}
+
+/* line 63, ../../app/stylesheets/style.scss */
+.tooltip {
+  background-color: #000;
+  border: 1px solid #fff;
+  padding: 10px 15px;
+  width: 200px;
+  display: none;
+  color: #fff;
+  text-align: left;
+  font-size: 12px;
+  /* outline radius for mozilla/firefox only */
+  -moz-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
+}
+
+/* the input field */
+/* line 79, ../../app/stylesheets/style.scss */
+.date {
+  /* border:1px solid #ccc;
+  font-size:12px;
+  padding:4px;
+  text-align:center;
+  width:194px;		
+  -moz-box-shadow:0 0 10px #eee inset; */
+}
+
+/* calendar root element */
+/* line 89, ../../app/stylesheets/style.scss */
+#calroot {
+  margin-top: -1px;
+  width: 198px;
+  padding: 2px;
+  background-color: #fff;
+  font-size: 11px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0 0 15px #666;
+  -webkit-box-shadow: 0 0 15px #666;
+}
+
+/* head. contains title, prev/next month controls and possible month/year selectors */
+/* line 103, ../../app/stylesheets/style.scss */
+#calhead {
+  padding: 2px 0;
+  height: 22px;
+}
+
+/* line 108, ../../app/stylesheets/style.scss */
+#caltitle {
+  font-size: 14px;
+  color: #0150D1;
+  float: left;
+  text-align: center;
+  width: 155px;
+  line-height: 20px;
+  text-shadow: 0 1px 0 #ddd;
+}
+
+/* line 118, ../../app/stylesheets/style.scss */
+#calnext, #calprev {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: transparent url(prev.gif) no-repeat scroll center center;
+  float: left;
+  cursor: pointer;
+}
+
+/* line 127, ../../app/stylesheets/style.scss */
+#calnext {
+  background-image: url(next.gif);
   float: right;
 }
-/* line 58, ../../app/stylesheets/style.sass */
-#header h1 a {
-  display: none;
+
+/* line 132, ../../app/stylesheets/style.scss */
+#calprev.caldisabled, #calnext.caldisabled {
+  visibility: hidden;
+}
+
+/* year/month selector */
+/* line 137, ../../app/stylesheets/style.scss */
+#caltitle select {
+  font-size: 10px;
+}
+
+/* names of the days */
+/* line 142, ../../app/stylesheets/style.scss */
+#caldays {
+  height: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 147, ../../app/stylesheets/style.scss */
+#caldays span {
+  display: block;
+  float: left;
+  width: 28px;
+  text-align: center;
+}
+
+/* container for weeks */
+/* line 155, ../../app/stylesheets/style.scss */
+#calweeks {
+  background-color: #fff;
+  margin-top: 4px;
+}
+
+/* single week */
+/* line 161, ../../app/stylesheets/style.scss */
+.calweek {
+  clear: left;
+  height: 22px;
+}
+
+/* single day */
+/* line 167, ../../app/stylesheets/style.scss */
+.calweek a {
+  display: block;
+  float: left;
+  width: 27px;
+  height: 20px;
+  text-decoration: none;
+  font-size: 11px;
+  margin-left: 1px;
+  text-align: center;
+  line-height: 20px;
+  color: #666;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+/* different states */
+/* line 183, ../../app/stylesheets/style.scss */
+.calweek a:hover, .calfocus {
+  background-color: #ddd;
+}
+
+/* sunday */
+/* line 188, ../../app/stylesheets/style.scss */
+a.calsun {
+  color: red;
+}
+
+/* offmonth day */
+/* line 193, ../../app/stylesheets/style.scss */
+a.caloff {
+  color: #ccc;
+}
+
+/* line 197, ../../app/stylesheets/style.scss */
+a.caloff:hover {
+  background-color: #f5f5fa;
+}
+
+/* unselecteble day */
+/* line 203, ../../app/stylesheets/style.scss */
+a.caldisabled {
+  background-color: #efefef !important;
+  color: #ccc	!important;
+  cursor: default;
+}
+
+/* current day */
+/* line 210, ../../app/stylesheets/style.scss */
+#calcurrent {
+  background-color: #498CE2;
+  color: #fff;
+}
+
+/* today */
+/* line 216, ../../app/stylesheets/style.scss */
+#caltoday {
+  background-color: #333;
+  color: #fff;
 }

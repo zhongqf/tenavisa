@@ -12,16 +12,25 @@ module Educator::ProfilesHelper
     end
   end
   
-  def profile_avoid_actions(profile)
+  def profile_valid_actions(profile)
     
-    returning(Array.new) do |html|    
+    returning(Array.new) do |html|
+      
+      #if current_educator && profile.can_edit_by_educator
+      #  html << link_to("Edit this profile", edit_educator_profile_path(@profile), :class => "button right")
+      #end
+    
       @profile.aasm_events_for_current_state.each do |event|
+      
         case event
-        when :accept
-          html << link_to('Accept', accept_educator_profile_path(@profile), :method => :post, :class => "button")
-        when :deny
-          html << link_to('Deny', educator_profile_deny_path(@profile), :class => "button")
+          when :freeze
+            html << link_to("Freeze", freeze_educator_profile_path(@profile), :method => :post, :class => "button")
+          when :unfreeze
+            html << link_to("Unfreeze", unfreeze_educator_profile_path(@profile), :method => :post, :class => "button")
+          when :archive
+            html << link_to("Archive", archive_educator_profile_path(@profile), :method => :post, :class => "button")
         end
+
       end
     end
   end

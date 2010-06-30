@@ -1,5 +1,5 @@
 
 %tr
   %td= form.label element.key, element.title_cn
-  %td= form.text_field element.key, options
+  %td= form.text_field element.key, options.merge!(:title => element.description, :class => "jquerytools_tooltip")
   

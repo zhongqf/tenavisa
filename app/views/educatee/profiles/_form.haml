@@ -1,6 +1,13 @@
-- form_for @profile, :url => @submit_path, :html => { :multipart => true} do |form|
+:javascript
+
+  
+- form_for @profile, :url => @submit_path, :html => { :multipart => true, :id => "edit_profile"} do |form|
+  = hidden_field_tag :page_id, @page.id
+  = error_messages_for :profile
   %table.formInfo
     = make_form_for(@elements, form, @profile)
     %tr
       %td.buttons
-      %td.buttons= submit_tag "Save", :class => "commit"
+      %td.buttons
+        = link_to "Back", :back, :class => "button"
+        = submit_tag "Save", :class => "commit"

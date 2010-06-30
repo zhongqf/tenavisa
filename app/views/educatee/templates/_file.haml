@@ -29,4 +29,4 @@
     - else
       = image_tag(profile.send(:"#{element.key}"), :size => "100x135")
     %br/
-    = form.file_field element.key, options
+    = form.file_field element.key, options.merge!(:title => element.description)
