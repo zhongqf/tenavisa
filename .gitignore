@@ -15,3 +15,7 @@ public/upload
 public/stylesheets/compiled
 .DS_Store
 *.esproj
+db/development.sqlite3.draw_text
+db/development.sqlite3.old
+public/test.csv
+tmp/

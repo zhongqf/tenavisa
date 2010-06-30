@@ -55,13 +55,13 @@ Page:
   relationships: elements
   filters: 
   search: 
-  application: tenavisa    
+  application: tenavisa
 
 Profile:
   fields:
     list: educatee_id
     form: educatee_id, status
-  order_by: 
+  order_by:
   relationships: valeurs
   filters: 
   search: 
