@@ -10,6 +10,8 @@
 %hr
 %p
   = link_to 'Back', :back, :class => "button"
+  = link_to 'Generate Application in PDF', educatee_profile_path(:format => :pdf, :template => "educatee"), :class => "button"
+
   - if current_educatee
     - if @profile.aasm_events_for_current_state.include?(:submit)
       = link_to 'Submit', '', :class => "button"

@@ -7,6 +7,7 @@
 - if current_educator
   = profile_valid_actions(@profile).join(" ")
 
-= link_to 'Generate Application in PDF', formatted_educator_profile_path(@profile, :pdf), :class => "button"
+= link_to 'Generate Application x 5', educator_profile_path(@profile, :format => :pdf, :template => "educator_application"), :class => "button"
+= link_to 'Generate Resume & Financial Contract', educator_profile_path(@profile, :format => :pdf, :template => "educator_resume"), :class => "button"
 = link_to 'Back to Profile list', educator_profiles_path(), :class => "button"
     

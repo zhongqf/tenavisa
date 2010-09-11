@@ -15,21 +15,24 @@ class Educatee::ProfilesController < ApplicationController
       format.html
       format.pdf do
         
-        template = File.join(RAILS_ROOT, "public", SystemConfig.profile_pdf_template_file)
-
-        pdf = Prawn::Document.new(:template => template)
+        template = Pdftemp.find_by_key(params[:template])
         
-        font_zh = File.join(RAILS_ROOT, "simhei.ttf")
-        font_ja = File.join(RAILS_ROOT, "ipag.ttf")
-        
-        Element.all.each do |element|
-          script = element.prawn_output_script
-          value = @profile.send(element.key)
-          eval(script) if script && value
+        if template
+          temp_file = File.join(RAILS_ROOT, "public", template.pdffile.url(nil, false))
+          
+          pdf = Prawn::Document.new(:template => temp_file)
+          font_zh = File.join(RAILS_ROOT, "simhei.ttf")
+          font_ja = File.join(RAILS_ROOT, "ipag.ttf")
+          
+          script = template.script
+          profile = @profile
+          
+          eval(script) if script && profile
+          
+          send_data pdf.render
+        else
+          raise "No template named '#{params[:template]}' are defined."
         end
-
-        send_data pdf.render
-
       end
     end
   end

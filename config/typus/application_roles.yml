@@ -11,3 +11,4 @@ admin:
   Valeur: create, read, update, delete
   Page: create, read, update, delete
   SystemConfig: create, read, update, delete
+  Pdftemp: create, read, update, delete
