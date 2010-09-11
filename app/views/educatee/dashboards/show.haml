@@ -23,6 +23,9 @@
   = profile_message(@profile)
 
 %hr
-%p= link_to 'View my profile', educatee_profile_path, :class => "button"
+%p
+  = link_to 'View my profile', educatee_profile_path, :class => "button"
+  = link_to 'Generate Application', educatee_profile_path(:format => :pdf, :template => "educatee"), :class => "button"
+
     
     
