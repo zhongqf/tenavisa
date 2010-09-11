@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20100629153524) do
     t.integer  "page_id"
     t.text     "prawn_output_script"
     t.boolean  "is_title"
-    t.integer  "display_index"
+    t.integer  "display_index",       :default => 0
     t.float    "weight",              :default => 0.0
   end
 

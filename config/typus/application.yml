@@ -14,7 +14,7 @@ Account:
   application: tenavisa
 
 Educatee:
-  fields:
+  fields: 
     list: 
     form: 
   order_by: 

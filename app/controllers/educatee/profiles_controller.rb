@@ -1,4 +1,4 @@
-require 'prawn/core'
+require 'prawn'
 Mime::Type.register 'application/pdf', :pdf
 
 class Educatee::ProfilesController < ApplicationController
