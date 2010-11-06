@@ -26,9 +26,11 @@ class Educatee::ProfilesController < ApplicationController
           
           script = template.script
           profile = @profile
-          
-          eval(script) if script && profile
-          
+          begin 
+            eval(script) if script && profile
+          rescue
+            logger.error "[PRAWN ERROR STOPER]: Generate PDF from unfinished form."
+          end
           send_data pdf.render
         else
           raise "No template named '#{params[:template]}' are defined."

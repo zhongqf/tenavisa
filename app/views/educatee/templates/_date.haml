@@ -1,7 +1,6 @@
 %tr
   %td= form.label element.key, element.title_cn
   %td
-    =# form.date_select element.key, {:start_year => 1900}.merge(options).merge(:title => element.description)
-    = form.text_field element.key, :class => "jquerytools_dateinput"
+    = form.text_field element.key
 :javascript
-  / $("#profile_#{element.key}").dateinput({ offset: [0, 0], format: 'yyyy-mm-dd', selectors: true });
+  $("document").ready(function() {$("#profile_#{element.key}").datepicker({dateFormat: "yy-mm-dd", yearRange: '#{Time.now.year-100}:#{Time.now.year+20}', defaultDate: "1990-01-01", changeMonth: true, changeYear: true});});
