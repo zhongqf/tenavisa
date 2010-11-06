@@ -142,7 +142,7 @@ class Profile < ActiveRecord::Base
           valeur.valeur = value
         end
         
-        valeur.save && self.touch      
+        valeur.save
       end
     end
   end

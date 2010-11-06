@@ -7,5 +7,5 @@
       /   = profile.send(:"#{column.key}")
       = profile.send(:"#{column.key}")
   %td= profile.status
-  %td= profile.updated_at.strftime("%Y/%m/%d %H:%M")
+  %td= profile.updated_at.localtime.strftime("%Y/%m/%d %H:%M")
   %td= link_to "View", educator_profile_path(profile)

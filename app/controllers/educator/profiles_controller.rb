@@ -28,7 +28,7 @@ class Educator::ProfilesController < Educatee::ProfilesController
 
     safe = multi_check_safe(params[:profile], params)
     safe = multi_attribute_as_date(safe)
-    safe.merge!(:current_page_id => @page.id)
+    safe.merge!({:current_page_id => @page.id, :updated_at => Time.now})
   
     if @profile.update_attributes(safe)
       flash[:notice] = "Profile updated."
