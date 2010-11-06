@@ -3,6 +3,6 @@ class Educator::DashboardsController < ApplicationController
   
   def show
     @educator = current_educator
-    @profiles = Profile.find_all_by_status('submitted')
+    @profiles = Profile.submitted.ordered
   end
 end

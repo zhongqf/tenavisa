@@ -6,6 +6,9 @@ class Profile < ActiveRecord::Base
   
   after_save :update_elements
   
+  named_scope :submitted, {:conditions => { :status => "submitted"}}
+  named_scope :ordered, { :order => "updated_at desc"}
+  
   include AASM
   
   aasm_column :status
@@ -139,7 +142,7 @@ class Profile < ActiveRecord::Base
           valeur.valeur = value
         end
         
-        valeur.save        
+        valeur.save && self.touch      
       end
     end
   end

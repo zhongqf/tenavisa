@@ -8,7 +8,7 @@ class Educator::ProfilesController < Educatee::ProfilesController
   
     
   def index
-    @profiles = Profile.all
+    @profiles = Profile.ordered
   end
   
   def edit
