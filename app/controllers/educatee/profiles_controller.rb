@@ -28,8 +28,9 @@ class Educatee::ProfilesController < ApplicationController
           profile = @profile
           begin 
             eval(script) if script && profile
-          rescue
+          rescue StandardError => e
             logger.error "[PRAWN ERROR STOPER]: Generate PDF from unfinished form."
+            logger.error "[PRAWN ERROR]: #{e.message}"
           end
           send_data pdf.render
         else
